@@ -48,4 +48,6 @@ CREATE TABLE CANCION_GENERO(
 --DROP TABLE CANCION;
 INSERT INTO PAIS(nombre) VALUES('canada');
 INSERT INTO ALBUM(nombre, fecha_lanzamiento) VALUES ('STARBOY', 2016-11-25 );
-
+INSERT INTO GENERO(nombre) VALUES('pop');
+INSERT INTO ARTISTA(nombre,esta_verificado) VALUES('THE WEEKND', 's');
+INSERT INTO CANCION(titulo, duracion_segundos, fecha_lanzamiento) VALUES('DIE FOR YOU', 260 , 2016-11-25);
