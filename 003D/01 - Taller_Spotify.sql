@@ -1,26 +1,61 @@
-DROP TABLE CANCION;
+DROP TABLE CANCION_GENERO CASCADE CONSTRAINTS;
+DROP TABLE CANCION CASCADE CONSTRAINTS;
+DROP TABLE ALBUM CASCADE CONSTRAINTS;
+DROP TABLE SELLO CASCADE CONSTRAINTS;
+DROP TABLE GENERO CASCADE CONSTRAINTS;
+DROP TABLE ARTISTA CASCADE CONSTRAINTS;
+
+CREATE TABLE ARTISTA(
+    id_artista NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    nombre VARCHAR2(100) NOT NULL,
+    esta_verificado CHAR(1),
+    biografia VARCHAR2(250)
+);
+
+CREATE TABLE GENERO(
+    id_genero NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    nombre VARCHAR2(50) NOT NULL UNIQUE
+);
+
+
+CREATE TABLE SELLO(
+    id_sello NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    nombre VARCHAR2(100) NOT NULL
+);
+
+CREATE TABLE ALBUM(
+    id_album NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    titulo VARCHAR2(100) NOT NULL,
+    fecha_lanzamiento DATE,
+    id_sello NUMBER REFERENCES SELLO(id_sello)
+);
 
 CREATE TABLE CANCION(
     id_cancion NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY ,
     titulo VARCHAR2(200),
-    artista VARCHAR2(200),
-    album VARCHAR2(200),
-    genero VARCHAR2(200),
+    id_artista NUMBER REFERENCES ARTISTA(id_artista),
+    id_album NUMBER REFERENCES ALBUM(id_album),
     duracion_segundos NUMBER,
     fecha_lanzamiento DATE
 );
 
-INSERT INTO CANCION( titulo, artista, album, genero, duracion_segundos, fecha_lanzamiento ) VALUES ( 'Dont Cry', 'guns and roses', 'Use you illusions', 'Rock', 200, DATE '1991-09-17');
 
-INSERT INTO CANCION( titulo, artista, album, genero, duracion_segundos, fecha_lanzamiento ) VALUES ('November Rain', 'Guns n Roses', 'Use you illusions', 'Rock', 240, DATE '1991-09-17');
+CREATE TABLE CANCION_GENERO(
+    id_cancion NUMBER REFERENCES CANCION(id_cancion),
+    id_genero NUMBER REFERENCES GENERO(id_genero)
+);
 
 
 
-INSERT INTO CANCION( titulo, artista, album, genero, duracion_segundos, fecha_lanzamiento ) VALUES ( 'Strainch', 'Guns %&% Roses', 'Use you illusions', 'Rock', 240, DATE '1991-09-17');
+
+INSERT INTO ARTISTA(nombre, esta_verificado) VALUES ('Michael Jackson', 'S');
+
+INSERT INTO ARTISTA(nombre, esta_verificado) VALUES ('Los Prisioneros', 'S');
+
+INSERT INTO ARTISTA(nombre, esta_verificado) VALUES ('31 Minutos', 'S');
+
+INSERT INTO ARTISTA(nombre, esta_verificado) VALUES ('Gustavo Quiñimil', 'N');
 
 COMMIT;
 
-
-DELETE FROM CANCION WHERE ID_CANCION = 1;
-
-commit;
+SELECT * FROM ARTISTA;
