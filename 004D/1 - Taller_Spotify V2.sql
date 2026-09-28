@@ -7,28 +7,17 @@ DROP TABLE GENERO CASCADE CONSTRAINTS;
 
 
 
+CREATE TABLE NACIONALIDAD(
+    id_nacionalidad NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    nombre VARCHAR2(100)
+);
+
 CREATE TABLE ARTISTA(
     id_artista NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     nombre VARCHAR2(100) NOT NULL,
     esta_verificado CHAR(1),
     id_nacionalidad NUMBER REFERENCES NACIONALIDAD(id_nacionalidad)
 );
-
-CREATE TABLE NACIONALIDAD(
-    id_nacionalidad NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    nombre VARCHAR2(100)
-);
-
-CREATE TABLE CANCION(
-    id_cancion NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    titulo VARCHAR2(200),
-    id_artista NUMBER REFERENCES ARTISTA(id_artista),
-    id_album NUMBER REFERENCES ALBUM(id_album),
-    id_genero NUMBER REFERENCES GENERO(id_genero),
-    duracion_segundos NUMBER,
-    fecha_lanzamiento DATE
-);
-
 
 CREATE TABLE ALBUM(
     id_album NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -40,6 +29,21 @@ CREATE TABLE GENERO(
     id_genero NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     nombre VARCHAR2(100)
 );
+CREATE TABLE CANCION(
+    id_cancion NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    titulo VARCHAR2(200),
+    id_artista NUMBER REFERENCES ARTISTA(id_artista),
+    id_album NUMBER REFERENCES ALBUM(id_album),
+    id_genero NUMBER REFERENCES GENERO(id_genero),
+    duracion_segundos NUMBER,
+    fecha_lanzamiento DATE
+);
+
+-- CREATE TABLE CANCION_GENERO(
+    id_cancion NUMBER REFERENCES CANCION(id_cancion),
+    id_genero NUMBER REFERENCES GENERO(id_genero)
+):
+
 
 INSERT INTO ARTISTA(nombre, esta_verificado, nacionalidad) VALUES('Los Bunkers', 'S', 2);
 INSERT INTO ARTISTA(nombre, esta_verificado, nacionalidad) VALUES('Pink Floyd', 'S', 1);
@@ -97,7 +101,4 @@ JOIN ARTISTA a ON c.ID_ARTISTA = a.ID_ARTISTA;
 
 SELECT c.TITULO, c.GENERO, a.NOMBRE, a.NACIONALIDAD FROM CANCION c
 JOIN ARTISTA a ON c.ID_ARTISTA = a.ID_ARTISTA;
-
-
-
 
