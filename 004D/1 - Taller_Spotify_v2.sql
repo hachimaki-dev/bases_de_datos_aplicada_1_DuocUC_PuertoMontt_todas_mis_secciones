@@ -86,17 +86,17 @@ JOIN ARTISTA a ON c.ID_ARTISTA = a.ID_ARTISTA;
 
 SELECT 
     c.TITULO, 
-    c.DURACION_SEGUNDOS, 
-    a.NOMBRE, 
-    al.NOMBRE, 
-    g.NOMBRE 
+    c.DURACION_SEGUNDOS AS Duracion, 
+    a.NOMBRE AS Artista, 
+    al.NOMBRE AS Album, 
+    g.NOMBRE AS Genero
 FROM 
     CANCION c
-INNER JOIN 
+JOIN 
     ARTISTA a ON c.ID_ARTISTA = a.ID_ARTISTA
-INNER JOIN 
+JOIN 
     ALBUM al ON c.ID_ALBUM = al.ID_ALBUM
-INNER JOIN 
+JOIN 
     GENERO g ON c.ID_GENERO = g.ID_GENERO;
 
 --genero, album y join
