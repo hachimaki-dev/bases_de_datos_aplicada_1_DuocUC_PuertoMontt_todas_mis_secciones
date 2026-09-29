@@ -40,9 +40,9 @@ CREATE TABLE CANCION(
 );
 
 -- CREATE TABLE CANCION_GENERO(
-    id_cancion NUMBER REFERENCES CANCION(id_cancion),
-    id_genero NUMBER REFERENCES GENERO(id_genero)
-):
+    --id_cancion NUMBER REFERENCES CANCION(id_cancion),
+    --id_genero NUMBER REFERENCES GENERO(id_genero)
+-- );
 
 
 INSERT INTO ARTISTA(nombre, esta_verificado, nacionalidad) VALUES('Los Bunkers', 'S', 2);
