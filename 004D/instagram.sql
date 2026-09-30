@@ -9,32 +9,26 @@ DROP TABLE TIPO_CONTENIDO CASCADE CONSTRAINTS;
 CREATE TABLE USUARIO_REMITENTE(
     id_usuario_remitente NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     nombre_perfil_remitente VARCHAR2(100) NOT NULL UNIQUE,
-    correo VARCHAR2(200) UNIQUE,
+    correo VARCHAR2(200) not NULL UNIQUE,
     clave VARCHAR2(20) NOT NULL,
     plus CHAR(1),
     esta_verificado CHAR(1),
-    fecha_lanzamiento DATE 
+    fecha_creacion TIMESTAMP DEFAULT SYSTIMESTAMP
 );
 
 CREATE TABLE USUARIO_DESTINATARIO(
     id_usuario_destinatario NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     nombre_perfil_destinatario VARCHAR2(100) NOT NULL UNIQUE,
-    correo VARCHAR2(200) UNIQUE,
+    correo VARCHAR2(200) NOT NULL UNIQUE,
     clave VARCHAR2(20) NOT NULL,
     plus CHAR(1),
     esta_verificado CHAR(1),
-    fecha_lanzamiento DATE 
+    fecha_creacion TIMESTAMP DEFAULT SYSTIMESTAMP
 );
 
 CREATE TABLE CHAT(
-    id_chat NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     ID_USUARIO_REMITENTE NUMBER REFERENCES USUARIO_REMITENTE(id_usuario_remitente),
     ID_USUARIO_DESTINATARIO NUMBER REFERENCES USUARIO_DESTINATARIO(id_usuario_destinatario)
-);
-
-CREATE TABLE CONTENIDO(
-    id_contenido NUMBER GENERATED ALWAYS as IDENTITY PRIMARY KEY,
-    id_tipo_contenido NUMBER REFERENCES TIPO_CONTENIDO(id_tipo_contenido)
 );
 
 CREATE TABLE TIPO_CONTENIDO(
@@ -42,13 +36,19 @@ CREATE TABLE TIPO_CONTENIDO(
     Nombre_contenido VARCHAR2(100) UNIQUE
 );
 
+CREATE TABLE CONTENIDO(
+    id_contenido NUMBER GENERATED ALWAYS as IDENTITY PRIMARY KEY,
+    id_tipo_contenido NUMBER REFERENCES TIPO_CONTENIDO(id_tipo_contenido)
+);
 
 
-INSERT INTO USUARIO_REMITENTE(nombre_perfil_remitente, correo, clave,plus,esta_verificado,fecha_lanzamiento) VALUES ('juan_perez', 'juan.perez@email.com', 'Clave1234*' ,'y','n', DATE '2025-01-15');
-INSERT INTO USUARIO_DESTINATARIO(nombre_perfil_destinatario, correo, clave,plus,esta_verificado, fecha_lanzamiento) VALUES ('maria_gomez', 'maria.gomez@email.com', 'Secr3t2026','n','n',DATE '2025-06-20' );
-INSERT INTO USUARIO_REMITENTE(nombre_perfil_remitente, correo, clave,plus,esta_verificado, fecha_lanzamiento) VALUES ('carlos_dev', 'carlos.dev@email.com', 'Pass_9876','n','y', DATE '2026-02-10');
-INSERT INTO USUARIO_DESTINATARIO(nombre_perfil_destinatario, correo, clave,plus,esta_verificado, fecha_lanzamiento) VALUES ('ana_designer', 'ana.design@email.com', 'AnaDesign20','n','y', DATE '2026-08-01');
-INSERT INTO USUARIO_REMITENTE(nombre_perfil_remitente, correo, clave,plus,esta_verificado, fecha_lanzamiento) VALUES ('lucia_mkt', 'lucia.mkt@email.com', 'LuMkt_2026!','y','y', DATE '2026-11-12');
+
+
+INSERT INTO USUARIO_REMITENTE(nombre_perfil_remitente, correo, clave,plus,esta_verificado,fecha_creacion) VALUES ('juan_perez', 'juan.perez@email.com', 'Clave1234*' ,'y','n', DATE '2025-01-15');
+INSERT INTO USUARIO_DESTINATARIO(nombre_perfil_destinatario, correo, clave,plus,esta_verificado, fecha_creacion) VALUES ('maria_gomez', 'maria.gomez@email.com', 'Secr3t2026','n','n',DATE '2025-06-20' );
+INSERT INTO USUARIO_REMITENTE(nombre_perfil_remitente, correo, clave,plus,esta_verificado, fecha_creacion) VALUES ('carlos_dev', 'carlos.dev@email.com', 'Pass_9876','n','y', DATE '2026-02-10');
+INSERT INTO USUARIO_DESTINATARIO(nombre_perfil_destinatario, correo, clave,plus,esta_verificado, fecha_creacion) VALUES ('ana_designer', 'ana.design@email.com', 'AnaDesign20','n','y', DATE '2026-08-01');
+INSERT INTO USUARIO_REMITENTE(nombre_perfil_remitente, correo, clave,plus,esta_verificado, fecha_creacion) VALUES ('lucia_mkt', 'lucia.mkt@email.com', 'LuMkt_2026!','y','y', DATE '2026-11-12');
 
 INSERT INTO CHAT(ID_USUARIO_REMITENTE, ID_USUARIO_DESTINATARIO) VALUES(1,1);
 INSERT INTO CHAT(ID_USUARIO_REMITENTE, ID_USUARIO_DESTINATARIO) VALUES(2,1);
@@ -72,8 +72,8 @@ INSERT INTO TIPO_CONTENIDO(Nombre_contenido) VALUES('LIVE');
 INSERT INTO TIPO_CONTENIDO(Nombre_contenido) VALUES('HISTORIA');
 INSERT INTO TIPO_CONTENIDO(Nombre_contenido) VALUES('PUBLICACIÓN');
 
-SELECT * FROM CONTENIDO c 
-JOIN TIPO_CONTENIDO t ON CONTENIDO.ID_TIPO_CONTENIDO = TIPO_CONTENIDO.ID_TIPO_CONTENIDO;
+SELECT * FROM CONTENIDO c
+JOIN TIPO_CONTENIDO  ON c.ID_TIPO_CONTENIDO = TIPO_CONTENIDO.ID_TIPO_CONTENIDO;
 
 SELECT * FROM CHAT
 JOIN USUARIO_REMITENTE on CHAT.ID_USUARIO_REMITENTE= CHAT.ID_USUARIO_DESTINATARIO;
