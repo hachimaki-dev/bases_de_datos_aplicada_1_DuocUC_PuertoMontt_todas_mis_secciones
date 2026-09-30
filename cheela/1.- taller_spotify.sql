@@ -7,7 +7,7 @@ DROP TABLE pais CASCADE CONSTRAINT;
 
 CREATE TABLE pais(
     id_pais NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    nombre          VARCHAR2(100)    NOT NULL
+    nombre          VARCHAR2(100)    NOT NULL UNIQUE
 );
 
 CREATE TABLE artista(
@@ -24,7 +24,7 @@ CREATE TABLE album(
 );
 CREATE TABLE genero(
     id_genero NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    nombre VARCHAR2(100) NOT NULL
+    nombre VARCHAR2(100) NOT NULL UNIQUE
 );
 
 
@@ -44,6 +44,7 @@ CREATE TABLE cancion_genero(
     id_cancion NUMBER REFERENCES cancion(id_cancion),
     id_genero NUMBER REFERENCES genero(id_genero)
 );
+
 INSERT INTO pais (nombre) VALUES ('Argentina');
 INSERT INTO PAIS (NOMBRE) VALUES ('Brazil');
 INSERT INTO PAIS (NOMBRE) VALUES ('Chile');
@@ -70,8 +71,10 @@ INSERT INTO GENERO (NOMBRE) VALUES ('Pop');
 INSERT INTO GENERO (NOMBRE) VALUES ('Punk');
 INSERT INTO GENERO (NOMBRE) VALUES ('J-Rock');
 INSERT INTO GENERO (NOMBRE) VALUES ('Metalcore');
+INSERT INTO GENERO (NOMBRE) VALUES ('Hardcore');
 INSERT INTO GENERO (NOMBRE) VALUES ('Post-hardcore');
-
+INSERT INTO GENERO (NOMBRE) VALUES ('Reggeaton');
+INSERT INTO GENERO (NOMBRE) VALUES ('Vocaloid');
 
 INSERT INTO cancion (titulo,id_artista,id_album,duracion_segundos,fecha_lanzamiento) VALUES ('YOUtopia',1,1,243,DATE '2024-05-24');
 INSERT INTO cancion (titulo,id_artista,id_album,duracion_segundos,fecha_lanzamiento) VALUES ('KoolAid',1,1,229,DATE '2024-05-24');
@@ -80,4 +83,22 @@ INSERT INTO cancion (titulo,id_artista,id_album,duracion_segundos,fecha_lanzamie
 INSERT INTO cancion (titulo,id_artista,id_album,duracion_segundos,fecha_lanzamiento) VALUES ('Destrózame',5,4,206,DATE '2007-01-07');
 INSERT INTO cancion (titulo,id_artista,id_album,duracion_segundos,fecha_lanzamiento) VALUES ('¿que Será de Mi ?',5,5,234,DATE '2012-06-10');
 
+INSERT INTO CANCION_GENERO(ID_CANCION, ID_GENERO) VALUES(1,7);
+INSERT INTO CANCION_GENERO(ID_CANCION, ID_GENERO) VALUES(1,5);
+INSERT INTO CANCION_GENERO(ID_CANCION, ID_GENERO) VALUES(2,7);
+INSERT INTO CANCION_GENERO(ID_CANCION, ID_GENERO) VALUES(2,5);
+INSERT INTO CANCION_GENERO(ID_CANCION, ID_GENERO) VALUES(3,5);
+INSERT INTO CANCION_GENERO(ID_CANCION, ID_GENERO) VALUES(4,7);
+
+
 COMMIT;
+-- consultar datos
+SELECT TITULO, ID_ARTISTA from CANCION;
+SELECT * FROM ARTISTA;
+-- unir ambas tablas
+
+SELECT * from CANCION JOIN ARTISTA ON CANCION.ID_ARTISTA = ARTISTA.ID_ARTISTA;
+
+SELECT c.TITULO, b.nombre AS ALBUM, a.NOMBRE AS ARTISTA from CANCION c 
+JOIN ARTISTA a ON c.ID_ARTISTA = a.ID_ARTISTA 
+JOIN ALBUM b on c.ID_ALBUM = b.ID_ALBUM;
