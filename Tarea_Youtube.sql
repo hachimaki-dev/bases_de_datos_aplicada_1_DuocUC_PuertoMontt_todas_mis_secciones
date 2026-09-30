@@ -20,17 +20,17 @@ CREATE TABLE TIPO_MEMBRESIA(
     precio NUMBER
 );
 
+CREATE TABLE TIPO_ESTADO_MEMBRESIA(
+    id_tipo_estado_membresia NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    estado VARCHAR2(30)
+);
+
 CREATE TABLE MEMBRESIA(
     id_membresia NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     fecha_inicio DATE,
     fecha_termino DATE,
     id_tipo_membresia NUMBER REFERENCES TIPO_MEMBRESIA(id_tipo_membresia),
-    id_tipo_estado_membresia NUMBER REFERENCES TIPO_ESTADO(id_tipo_estado_membresia)
-);
-
-CREATE TABLE TIPO_ESTADO_MEMBRESIA(
-    id_tipo_estado_membresia NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    estado VARCHAR2(30)
+    id_tipo_estado_membresia NUMBER REFERENCES TIPO_ESTADO_MEMBRESIA(id_tipo_estado_membresia)
 );
 
 CREATE TABLE TIPO_ESTADO_VIDEO(
@@ -50,10 +50,12 @@ CREATE TABLE TIPO_VISIBILIDAD(
 
 CREATE TABLE USUARIO(
     id_usuario NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    nombre VARCHAR2(50) NOT NULL UNIQUE,
+    nombre VARCHAR2(50) NOT NULL,
     email VARCHAR2(100) NOT NULL UNIQUE,
+    contrasena VARCHAR2(25),
     fecha_de_nacimiento DATE,
     esta_verificado CHAR(1),
+    fecha_creacion TIMESTAMP DEFAULT SYSTIMESTAMP,
     id_membresia NUMBER REFERENCES MEMBRESIA(id_membresia)
 );
 
@@ -63,12 +65,14 @@ CREATE TABLE CANAL(
     descripcion VARCHAR2(250),
     esta_verificado CHAR(1),
     esta_monetizado CHAR(1),
+    fecha_creacion TIMESTAMP,
     id_usuario NUMBER REFERENCES USUARIO(id_usuario)
 );
 
 CREATE TABLE PUBLICACION(
     id_publicacion NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     contenido VARCHAR2(250),
+    fecha_creacion TIMESTAMP,
     id_usuario NUMBER REFERENCES USUARIO(id_usuario),
     id_canal NUMBER REFERENCES CANAL(id_canal)
 );
@@ -77,11 +81,12 @@ CREATE TABLE VIDEO(
     id_video NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     titulo VARCHAR2(200) NOT NULL,
     descripcion VARCHAR2(200),
-    me_gusta_activados CHAR(1),
+    me_gusta_activados CHAR(1) NOT NULL CHECK (me_gusta_activados in ('S', 'N')),
     comentarios_activados CHAR(1),
     esta_monetizado CHAR(1),
     duracion NUMBER,
     url_video VARCHAR2(200),
+    fecha_publicacion TIMESTAMP,
     id_tipo_video NUMBER REFERENCES TIPO_VIDEO(id_tipo_video),
     id_canal NUMBER REFERENCES CANAL(id_canal),
     id_tipo_visibilidad NUMBER REFERENCES TIPO_VISIBILIDAD(id_tipo_visibilidad),
@@ -158,7 +163,7 @@ INSERT INTO TIPO_MEMBRESIA(plan, precio) VALUES('Anual', 70000);
 INSERT INTO TIPO_MEMBRESIA(plan, precio) VALUES('Lite', 4500);
 COMMIT;
 
-
+SELECT * FROM TIPO_MEMBRESIA;
 
 
 
