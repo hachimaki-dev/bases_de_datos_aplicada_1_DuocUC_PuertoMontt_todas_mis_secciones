@@ -60,21 +60,20 @@ CREATE TABLE LIKES (
 );
 
 
-INSERT INTO USUARIO (nombre_usuario, correo) VALUES ('juan.perez', 'juan.perez@gmail.com');
-INSERT INTO USUARIO (nombre_usuario, correo) VALUES ('maria.gonzalez', 'maria.gonzalez@gmail.com');
-INSERT INTO USUARIO (nombre_usuario, correo) VALUES ('carlos.soto', 'carlos.soto@gmail.com');
-INSERT INTO USUARIO (nombre_usuario, correo) VALUES ('ana.lopez', 'ana.lopez@gmail.com');
-INSERT INTO USUARIO (nombre_usuario, correo) VALUES ('pedro.rojas', 'pedro.rojas@gmail.com');
+INSERT INTO USUARIO (nombre_usuario, correo, fecha_registro) VALUES ('juan.perez', 'juan.perez@gmail.com', TIMESTAMP '2026-01-10 00:00:00');
+INSERT INTO USUARIO (nombre_usuario, correo, fecha_registro) VALUES ('maria.gonzalez','maria.gonzalez@gmail.com', TIMESTAMP '2026-01-15 00:00:00');
+INSERT INTO USUARIO (nombre_usuario, correo, fecha_registro) VALUES ('carlos.soto','carlos.soto@gmail.com', TIMESTAMP '2026-02-01 00:00:00');
+INSERT INTO USUARIO (nombre_usuario, correo, fecha_registro) VALUES ('ana.lopez','ana.lopez@gmail.com', TIMESTAMP '2026-02-10 00:00:00');
+INSERT INTO USUARIO (nombre_usuario, correo, fecha_registro) VALUES ('pedro.rojas','pedro.rojas@gmail.com', TIMESTAMP '2026-02-20 00:00:00');
 COMMIT;
 
 
-INSERT INTO PUBLICACIONES (titulo, descripcion) VALUES ('Mi primer viaje', 'Un increíble viaje al sur de Chile');
-INSERT INTO PUBLICACIONES (titulo, descripcion) VALUES ('Día de playa', 'Disfrutando el verano con amigos');
-INSERT INTO PUBLICACIONES (titulo, descripcion) VALUES ('Nueva receta', 'Preparando una deliciosa pasta');
-INSERT INTO PUBLICACIONES (titulo, descripcion) VALUES ('Atardecer', 'Un hermoso atardecer desde mi casa');
-INSERT INTO PUBLICACIONES (titulo, descripcion) VALUES ('Fin de semana', 'Disfrutando el fin de semana');
+INSERT INTO PUBLICACIONES (titulo, descripcion, fecha_publicacion) VALUES ('Mi primer viaje', 'Un increíble viaje al sur de Chile', TIMESTAMP '2026-03-01 00:00:00');
+INSERT INTO PUBLICACIONES (titulo, descripcion, fecha_publicacion) VALUES ('Día de playa', 'Disfrutando el verano con amigos', TIMESTAMP '2026-03-05 00:00:00');
+INSERT INTO PUBLICACIONES (titulo, descripcion, fecha_publicacion) VALUES ('Nueva receta', 'Preparando una deliciosa pasta', TIMESTAMP '2026-03-08 00:00:00');
+INSERT INTO PUBLICACIONES (titulo, descripcion, fecha_publicacion) VALUES ('Atardecer', 'Un hermoso atardecer desde mi casa', TIMESTAMP '2026-03-10 00:00:00');
+INSERT INTO PUBLICACIONES (titulo, descripcion, fecha_publicacion) VALUES ('Fin de semana', 'Disfrutando el fin de semana', TIMESTAMP '2026-03-12 00:00:00');
 COMMIT;
-
 
 INSERT INTO HISTORIA (esMejoresAmigos, vistas) VALUES ('N', 125);
 INSERT INTO HISTORIA (esMejoresAmigos, vistas) VALUES ('S', 87);
@@ -84,10 +83,10 @@ INSERT INTO HISTORIA (esMejoresAmigos, vistas) VALUES ('N', 312);
 COMMIT;
 
 
-INSERT INTO REEL ( titulo, descripcion, reproducciones, audio_nombre, duracion) VALUES ('Mi viaje', 'Video de mi viaje al sur', 1250, 'Summer Vibes', 30);
-INSERT INTO REEL ( titulo, descripcion, reproducciones, audio_nombre, duracion) VALUES ('Receta rápida', 'Una receta fácil y deliciosa', 3450, 'Cooking Beat', 45);
-INSERT INTO REEL ( titulo, descripcion, reproducciones, audio_nombre, duracion) VALUES ('Pasta italiana', 'Preparando pasta desde cero', 2180, 'Italian Music', 60);
-INSERT INTO REEL ( titulo, descripcion, reproducciones, audio_nombre, duracion) VALUES ('Atardecer', 'Un hermoso paisaje', 980, 'Relaxing Music', 20);
+INSERT INTO REEL (titulo, descripcion, fecha_publicacion, reproducciones, audio_nombre, duracion) VALUES ('Mi viaje', 'Video de mi viaje al sur', TIMESTAMP '2026-03-02 00:00:00', 1250, 'Summer Vibes', 30);
+INSERT INTO REEL (titulo, descripcion, fecha_publicacion, reproducciones, audio_nombre, duracion) VALUES ('Receta rápida', 'Una receta fácil y deliciosa', TIMESTAMP '2026-03-06 00:00:00', 3450, 'Cooking Beat', 45);
+INSERT INTO REEL (titulo, descripcion, fecha_publicacion, reproducciones, audio_nombre, duracion) VALUES ('Pasta italiana', 'Preparando pasta desde cero', TIMESTAMP '2026-03-09 00:00:00', 2180, 'Italian Music', 60);
+INSERT INTO REEL (titulo, descripcion, fecha_publicacion, reproducciones, audio_nombre, duracion) VALUES ('Atardecer', 'Un hermoso paisaje', TIMESTAMP '2026-03-11 00:00:00', 980, 'Relaxing Music', 20);
 COMMIT;
 
 
