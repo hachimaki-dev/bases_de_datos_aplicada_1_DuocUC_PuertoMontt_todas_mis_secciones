@@ -36,7 +36,8 @@ CREATE TABLE PREFERENCIAS(
     id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     id_genero_interesado REFERENCES TIPO_GENERO(id),
     edad_minima NUMBER,
-    edad_maxima NUMBER
+    edad_maxima NUMBER,
+    distancia_maxkm NUMBER
 
 )
 
