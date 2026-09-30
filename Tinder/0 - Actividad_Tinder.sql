@@ -2,8 +2,8 @@ DROP TABLE USUARIOS CASCADE CONSTRAINTS;
 DROP TABLE SEGUIDOR CASCADE CONSTRAINTS;
 
 CREATE TABLE USUARIOS(
-    id_artista NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    nombre varchar2(100),
+    id_usuario NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    nombre varchar2(100) NOT null,
     esta_verificado CHAR(1),
     nacionalidad varchar2(100),
     fecha_nacimiento NUMBER
