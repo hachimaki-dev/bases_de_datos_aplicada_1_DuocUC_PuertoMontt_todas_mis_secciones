@@ -16,7 +16,7 @@ CREATE TABLE ARTISTA(
     id_artista NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     nombre VARCHAR2(100) NOT NULL,
     esta_verificado CHAR(1),
-    nacionalidad VARCHAR2(100)
+    nacionalidad VARCHAR2(50)
 );
 
 INSERT INTO CANCION(titulo, artista, album, genero, duracion_segundos, fecha_lanzamiento) VALUES ('No me hables de sufrir', 'Los bunkers', 'La culpa', 'Rock latino', 200, DATE '2003-09-01');
