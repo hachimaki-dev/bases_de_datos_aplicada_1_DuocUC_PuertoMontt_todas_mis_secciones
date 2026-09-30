@@ -1,0 +1,108 @@
+CREATE TABLE usuario(
+    id_usuario NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    numero_telefonico NUMBER,
+    correo VARCHAR2(150) NOt NULL UNIQUE, 
+    nombre VARCHAR2(200) ,
+    fecha_nacimiento DATE,
+    )
+
+CREATE TABLE intereses(
+    id_intereses NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    nombre VARCHAR2(150)
+)
+
+CREATE TABLE categoria_interes(
+    id_categoria_interes NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    nombre VARCHAR2(150)
+)
+
+CREATE TABLE genero(
+    id_genero NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    nombre VARCHAR2(50),
+)
+
+CREATE TABLE ocupacion(
+    id_ocupacion NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    nombre VARCHAR2(150), 
+)
+
+CREATE TABLE comuna(
+    id_comuna NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    nombre VARCHAR2(150),
+)
+
+CREATE TABLE region(
+    id_region NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    nombre VARCHAR2(150),
+)
+
+CREATE TABLE pais(
+    id_pais NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    nombre VARCHAR2(100),
+)
+
+CREATE TABLE tipo_relacion_buscada(
+    id_tipo_relacion_buscada NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    nombre VARCHAR2(100)
+)
+
+CREATE TABLE altura(
+
+    id_altura NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    medida NUMBER
+)
+
+CREATE TABLE peso(
+    id_peso NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    cantidad NUMBER,
+)
+
+CREATE TABLE emparejamiento(
+    id_emparejamiento NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    nombre VARCHAR2(100),
+)
+
+CREATE TABLE mensajes(
+    id_mensajes NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+)
+
+CREATE TABLE suscripciones(
+    id_suscripciones NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    nombre VARCHAR2(100),
+    costo NUMBER,
+    modalidad NUMBER,
+)
+
+CREATE TABLE orientacion_sexual(
+    id_orientacion_sexual NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    nombre VARCHAR2(150),
+)
+
+CREATE TABLE distancia_maxima(
+    id_distancia_maxima NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    cantidad NUMBER
+)
+
+CREATE TABLE habitos(
+    id_habitos NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    nombre VARCHAR2(200)
+)
+
+CREATE TABLE fotos(
+    id_fotos NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    url VARCHAR2(200)
+)
+
+CREATE TABLE descripcion(
+    id_descripcion NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    contenido VARCHAR2(256)
+)
+
+CREATE TABLE mas_acerca_de_mi(
+    id_mas_acerca_de_mi NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    escoger_una_frase VARCHAR2(200)
+)
+
+CREATE TABLE idiomas_que_hablo(
+    
+)
