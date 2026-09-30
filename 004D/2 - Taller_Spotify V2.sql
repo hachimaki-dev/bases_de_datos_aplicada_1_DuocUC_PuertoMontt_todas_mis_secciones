@@ -25,9 +25,16 @@ CREATE TABLE CANCION(
     titulo VARCHAR2(200),
     id_artista NUMBER REFERENCES ARTISTA(id_artista),
     id_album NUMBER REFERENCES ALBUM(id_album),
-    id_genero NUMBER REFERENCES GENERO(id_genero),
     duracion_segundos NUMBER,
     fecha_lanzamiento DATE
+);
+
+CREATE TABLE CANCION_GENERO(
+    id_cancion NUMBER NOT NULL,
+    id_genero NUMBER NOT NULL,
+    CONSTRAINT pk_cancion_genero PRIMARY KEY(id_cancion, id_genero),
+    CONSTRAINT fk_cg_cancion FOREIGN KEY (id_cancion) REFERENCES CANCION(id_cancion),
+    CONSTRAINT fk_cg_genero FOREIGN KEY (id_genero) REFERENCES GENERO (id_genero)
 );
 
 
