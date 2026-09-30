@@ -36,37 +36,37 @@ CREATE TABLE PUBLICACIONES (
 );
 
 INSERT INTO USUARIOS (nombre, fecha_nacimiento, esta_verificado) 
-VALUES ("Carlos Pérez", '1995-05-12', "S");
+VALUES ('Carlos Pérez', DATE '1995-05-12', 'S');
 
 INSERT INTO USUARIOS (nombre, fecha_nacimiento, esta_verificado) 
-VALUES ("María Gómez", '2000-09-22', "N");
+VALUES ('María Gómez', DATE '2000-09-22', 'N');
 
 INSERT INTO USUARIOS (nombre, fecha_nacimiento, esta_verificado) 
-VALUES ("Sofía Ruiz", '1998-03-15', "S");
+VALUES ('Sofía Ruiz', DATE '1998-03-15', 'S');
 COMMIT;
 
 SELECT * FROM USUARIOS;
 
 INSERT INTO TIPO_CUENTA (cuenta_publica, cuenta_privada) 
-VALUES ("S", "N");
+VALUES ('S', 'N');
 
 INSERT INTO TIPO_CUENTA (cuenta_publica, cuenta_privada) 
-VALUES ("N", "S");
+VALUES ('N', 'S');
 
 INSERT INTO TIPO_CUENTA (cuenta_publica, cuenta_privada) 
-VALUES ("S", "N");
+VALUES ('N', 'S');
 COMMIT;
 
 SELECT * FROM TIPO_CUENTA;
 
 INSERT INTO MEJORES_AMIGOS(amigo_comun, mejor_amigo)
-VALUES ("S", "N");
+VALUES ('N', 'S');
 
 INSERT INTO MEJORES_AMIGOS(amigo_comun, mejor_amigo)
-VALUES ("N", "S");
+VALUES ('N', 'S');
 
 INSERT INTO MEJORES_AMIGOS(amigo_comun, mejor_amigo)
-VALUES ("S", "N");
+VALUES ('N', 'S');
 COMMIT;
 
 SELECT * FROM MEJORES_AMIGOS;
