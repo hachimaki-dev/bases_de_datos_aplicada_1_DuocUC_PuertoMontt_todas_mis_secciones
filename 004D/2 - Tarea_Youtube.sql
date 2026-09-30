@@ -1,8 +1,9 @@
--- Videos, usuarios, suscripcion, canales, comentarios, play_list, miembros, shorts, e_vivo, publicacion, membresia, facturacion,
--- MIEMBROS, MEMBRESIA, FACTURACION
+-- FACTURACION
 
 DROP TABLE CUENTA CASCADE CONSTRAINTS;
 DROP TABLE CANAL CASCADE CONSTRAINTS;
+DROP TABLE MEMBRESIA CASCADE CONSTRAINTS;
+DROP TABLE MIEMBRO CASCADE CONSTRAINTS;
 DROP TABLE VISIBILIDAD CASCADE CONSTRAINTS;
 DROP TABLE LISTA_REPRODUCCION CASCADE CONSTRAINTS;
 DROP TABLE CONTENIDO_CANAL CASCADE CONSTRAINTS;
@@ -11,67 +12,79 @@ DROP TABLE VIDEO CASCADE CONSTRAINTS;
 DROP TABLE LISTA_REPRODUCCION_VIDEO CASCADE CONSTRAINTS;
 DROP TABLE COMENTARIO CASCADE CONSTRAINTS;
 
--- CREATE TABLE MIEMBRO(
- --   id_miembro NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY
---);
+
 
 
 CREATE TABLE CUENTA(
     id_cuenta NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    nombre VARCHAR2(50),
-    correo_asociado VARCHAR2(200),
-    fecha_creacion DATE
+    nombre VARCHAR2(50) NOT NULL,
+    correo_asociado VARCHAR2(200) UNIQUE NOT NULL,
+    fecha_creacion TIMESTAMP DEFAULT SYSTIMESTAMP,
+    password VARCHAR2(200) NOT NULL
 );
 
 CREATE TABLE CANAL(
     id_canal NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     id_cuenta NUMBER REFERENCES CUENTA(id_cuenta),
-    nombre_identificador VARCHAR2(100),
+    nombre_identificador VARCHAR2(100) UNIQUE NOT NULL,
     num_suscriptores NUMBER,
-    descripcion VARCHAR2(250)
+    descripcion VARCHAR2(250),
+    fecha_union_canal TIMESTAMP DEFAULT SYSTIMESTAMP
+);
+
+CREATE TABLE MEMBRESIA(
+    id_membresia NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    tipo_membresia VARCHAR2(20) UNIQUE NOT NULL,
+    precio NUMBER NOT NULL
+);
+ CREATE TABLE MIEMBRO(
+    id_miembro NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    id_cuenta NUMBER REFERENCES CUENTA(id_cuenta),
+    id_canal NUMBER REFERENCES CANAL(id_canal),
+    id_membresia NUMBER REFERENCES MEMBRESIA(id_membresia)
 );
 
 CREATE TABLE VISIBILIDAD(
     id_visibilidad NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    tipo VARCHAR2(20)
+    tipo VARCHAR2(20) UNIQUE NOT NULL
 );
 
 CREATE TABLE LISTA_REPRODUCCION(
     id_lista_reproduccion NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     id_cuenta NUMBER REFERENCES CUENTA(id_cuenta),
-    nombre VARCHAR2(100),
+    nombre VARCHAR2(100) NOT NULL,
     descripcion VARCHAR2(250),
     id_visibilidad NUMBER REFERENCES VISIBILIDAD(id_visibilidad)
 );
 
-CREATE TABLE CONTENIDO_CANAL(
-    id_contenido_canal,
+CREATE TABLE CONTENIDO(
+    id_contenido NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     id_canal NUMBER REFERENCES CANAL(id_canal),
-    fecha_lanzamiento DATE,
+    fecha_lanzamiento TIMESTAMP DEFAULT SYSTIMESTAMP,
     like NUMBER,
     dislike NUMBER,
-    comentario_activados CHAR(1),
+    comentario_activados CHAR(1) CHECK (comentario_activados IN("S" OR "N")),
     id_visibilidad NUMBER REFERENCES VISIBILIDAD(id_visibilidad)
 );
 
 CREATE TABLE PUBLICACION(
     id_publicacion NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    id_contenido_canal NUMBER REFERENCES CONTENIDO_CANAL(id_contenido_canal),
-    texto VARCHAR2(250),
+    id_contenido NUMBER REFERENCES CONTENIDO(id_contenido),
+    texto VARCHAR2(250) NOT NULL,
     url_imagen VARCHAR2(250),
     id_visibilidad NUMBER REFERENCES VISIBILIDAD(id_visibilidad)
 );
 
 CREATE TABLE VIDEO(
     id_video NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    id_contenido_canal REFERENCES CONTENIDO_CANAL(id_contenido_canal),
-    titulo VARCHAR2(50),
+    id_contenido REFERENCES CONTENIDO(id_contenido),
+    titulo VARCHAR2(50) NOT NULL,
     descripcion VARCHAR2(250),
-    me_gusta_activados CHAR(1),
+    me_gusta_activados CHAR(1) CHECK (me_gusta_activados IN("S" OR "N")),
     duracion_segundos NUMBER,
-    url_video VARCHAR2(250),
-    es_short CHAR(1),
-    en_vivo CHAR(1)
+    url_video VARCHAR2(250)NOT NULL,
+    es_short CHAR(1) CHECK (es_short IN("S" OR "N")),
+    en_vivo CHAR(1) CHECK (en_vivo IN("S" OR "N"))
 );
 
 CREATE TABLE LISTA_REPRODUCCION_VIDEO(
@@ -81,7 +94,7 @@ CREATE TABLE LISTA_REPRODUCCION_VIDEO(
 
 CREATE TABLE COMENTARIO(
     id_comentario NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    texto VARCHAR2(250),
+    texto VARCHAR2(250) NOT NULL,
     me_gusta NUMBER,
     fecha_publicacion DATE,
     id_contenido_canal NUMBER REFERENCES VIDEO(id_contenido_canal)
