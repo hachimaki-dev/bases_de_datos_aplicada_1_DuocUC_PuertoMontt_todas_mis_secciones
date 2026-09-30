@@ -1,0 +1,16 @@
+DROP TABLE USUARIO CASCADE CONSTRAINTS;
+
+CREATE TABLE USUARIO(
+    id_usuario NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    nombre VARCHAR2 (30) NOT NULL,
+    nombre_de_usuario VARCHAR2 (30) NOT NULL,
+    fecha_nacimiento DATE,
+    esta_verificado BOOLEAN
+
+)
+
+CREATE TABLE PUBLICACION(
+    id_publicacion NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    descripcion VARCHAR2 (200),
+    id_autor NUMBER
+)
