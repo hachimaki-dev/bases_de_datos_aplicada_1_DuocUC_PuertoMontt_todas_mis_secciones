@@ -74,9 +74,10 @@ INSERT INTO GENERO (NOMBRE) VALUES ('Post-hardcore');
 
 
 INSERT INTO cancion (titulo,id_artista,id_album,duracion_segundos,fecha_lanzamiento) VALUES ('YOUtopia',1,1,243,DATE '2024-05-24');
-INSERT INTO cancion (titulo,id_artista,id_album,duracion_segundos,fecha_lanzamiento) VALUES ('KoolAid',1,1,243,DATE '2024-05-24');
-INSERT INTO cancion (titulo,id_artista,id_album,duracion_segundos,fecha_lanzamiento) VALUES ('Sleepwalking',1,2,243,DATE '2013-04-01');
-INSERT INTO cancion (titulo,id_artista,id_album,duracion_segundos,fecha_lanzamiento) VALUES ('Spaceship Earth(I.)',4,3,243,DATE '2024-05-24');
-INSERT INTO cancion (titulo,id_artista,id_album,duracion_segundos,fecha_lanzamiento) VALUES ('YOUtopia',1,1,243,DATE '2024-05-24');
+INSERT INTO cancion (titulo,id_artista,id_album,duracion_segundos,fecha_lanzamiento) VALUES ('KoolAid',1,1,229,DATE '2024-05-24');
+INSERT INTO cancion (titulo,id_artista,id_album,duracion_segundos,fecha_lanzamiento) VALUES ('Sleepwalking',1,2,230,DATE '2013-04-01');
+INSERT INTO cancion (titulo,id_artista,id_album,duracion_segundos,fecha_lanzamiento) VALUES ('Spaceship Earth (I.Avec Abandon)',4,3,175,DATE '2026-04-10');
+INSERT INTO cancion (titulo,id_artista,id_album,duracion_segundos,fecha_lanzamiento) VALUES ('Destrózame',5,4,206,DATE '2007-01-07');
+INSERT INTO cancion (titulo,id_artista,id_album,duracion_segundos,fecha_lanzamiento) VALUES ('¿que Será de Mi ?',5,5,234,DATE '2012-06-10');
 
 COMMIT;
