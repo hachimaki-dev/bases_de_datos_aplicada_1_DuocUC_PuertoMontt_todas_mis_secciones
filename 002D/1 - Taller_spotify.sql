@@ -102,18 +102,18 @@ INSERT INTO CANCION (titulo, id_artista, id_album, duracion_segundos, fecha_lanz
 INSERT INTO CANCION (titulo, id_artista, id_album, duracion_segundos, fecha_lanzamiento) VALUES ('Mentalidad Televisiva', 1, 1, 256, '1984-12-13');
 INSERT INTO CANCION (titulo, id_artista, id_album, duracion_segundos, fecha_lanzamiento) VALUES ('Nunca Quedas Mal Con Nadie', 1, 1, 251, '1984-12-13');
 
-INSERT INTO CANCION (titulo, id_artista, id_album, duracion_segundos, fecha_lanzamiento) VALUES ('Nada Es Gratis En La Vida', 2, 2, 228, '2006-10,23');
-INSERT INTO CANCION (titulo, id_artista, id_album, duracion_segundos, fecha_lanzamiento) VALUES ('Hoy Estoy Raro', 2, 2, 281, '2006-10,23');
-INSERT INTO CANCION (titulo, id_artista, id_album, duracion_segundos, fecha_lanzamiento) VALUES ('Así Soy Yo', 2, 2, 227, '2006-10,23');
-INSERT INTO CANCION (titulo, id_artista, id_album, duracion_segundos, fecha_lanzamiento) VALUES ('Yendo A La Casa De Damián', 2, 2, 256, '2006-10,23');
-INSERT INTO CANCION (titulo, id_artista, id_album, duracion_segundos, fecha_lanzamiento) VALUES ('Pobre Papá', 2, 2, 179, '2006-10,23');
-INSERT INTO CANCION (titulo, id_artista, id_album, duracion_segundos, fecha_lanzamiento) VALUES ('Ya No Sé Qué Hacer Conmigo', 2, 2, 241, '2006-10,23');
-INSERT INTO CANCION (titulo, id_artista, id_album, duracion_segundos, fecha_lanzamiento) VALUES ('Natural', 2, 2, 159, '2006-10,23');
-INSERT INTO CANCION (titulo, id_artista, id_album, duracion_segundos, fecha_lanzamiento) VALUES ('Invierno Del 92', 2, 2, 241, '2006-10,23');
-INSERT INTO CANCION (titulo, id_artista, id_album, duracion_segundos, fecha_lanzamiento) VALUES ('El Karaoke De Mi Noviecita', 2, 2, 262, '2006-10,23');
-INSERT INTO CANCION (titulo, id_artista, id_album, duracion_segundos, fecha_lanzamiento) VALUES ('Me Hace Bien, Me Hace Mal', 2, 2, 235, '2006-10,23');
-INSERT INTO CANCION (titulo, id_artista, id_album, duracion_segundos, fecha_lanzamiento) VALUES ('Pueblo Podrido', 2, 2, 152, '2006-10,23');
-INSERT INTO CANCION (titulo, id_artista, id_album, duracion_segundos, fecha_lanzamiento) VALUES ('Autos Nuevos', 2, 2, 253, '2006-10,23');
+INSERT INTO CANCION (titulo, id_artista, id_album, duracion_segundos, fecha_lanzamiento) VALUES ('Nada Es Gratis En La Vida', 2, 2, 228, '2006-10-23');
+INSERT INTO CANCION (titulo, id_artista, id_album, duracion_segundos, fecha_lanzamiento) VALUES ('Hoy Estoy Raro', 2, 2, 281, '2006-10-23');
+INSERT INTO CANCION (titulo, id_artista, id_album, duracion_segundos, fecha_lanzamiento) VALUES ('Así Soy Yo', 2, 2, 227, '2006-10-23');
+INSERT INTO CANCION (titulo, id_artista, id_album, duracion_segundos, fecha_lanzamiento) VALUES ('Yendo A La Casa De Damián', 2, 2, 256, '2006-10-23');
+INSERT INTO CANCION (titulo, id_artista, id_album, duracion_segundos, fecha_lanzamiento) VALUES ('Pobre Papá', 2, 2, 179, '2006-10-23');
+INSERT INTO CANCION (titulo, id_artista, id_album, duracion_segundos, fecha_lanzamiento) VALUES ('Ya No Sé Qué Hacer Conmigo', 2, 2, 241, '2006-10-23');
+INSERT INTO CANCION (titulo, id_artista, id_album, duracion_segundos, fecha_lanzamiento) VALUES ('Natural', 2, 2, 159, '2006-10-23');
+INSERT INTO CANCION (titulo, id_artista, id_album, duracion_segundos, fecha_lanzamiento) VALUES ('Invierno Del 92', 2, 2, 241, '2006-10-23');
+INSERT INTO CANCION (titulo, id_artista, id_album, duracion_segundos, fecha_lanzamiento) VALUES ('El Karaoke De Mi Noviecita', 2, 2, 262, '2006-10-23');
+INSERT INTO CANCION (titulo, id_artista, id_album, duracion_segundos, fecha_lanzamiento) VALUES ('Me Hace Bien, Me Hace Mal', 2, 2, 235, '2006-10-23');
+INSERT INTO CANCION (titulo, id_artista, id_album, duracion_segundos, fecha_lanzamiento) VALUES ('Pueblo Podrido', 2, 2, 152, '2006-10-23');
+INSERT INTO CANCION (titulo, id_artista, id_album, duracion_segundos, fecha_lanzamiento) VALUES ('Autos Nuevos', 2, 2, 253, '2006-10-23');
 
 INSERT INTO CANCION (titulo, id_artista, id_album, duracion_segundos, fecha_lanzamiento) VALUES ('Smells Like Teen Spirit', 3, 3, 301, '1991-09-24');
 INSERT INTO CANCION (titulo, id_artista, id_album, duracion_segundos, fecha_lanzamiento) VALUES ('In Bloom', 3, 3, 254, '1991-09-24');
@@ -137,6 +137,48 @@ CREATE TABLE CANCION_GENERO(
 
 );
 
+
+INSERT INTO CANCION_GENERO (id_cancion, id_genero) VALUES (1, 1);
+INSERT INTO CANCION_GENERO (id_cancion, id_genero) VALUES (2, 1);
+INSERT INTO CANCION_GENERO (id_cancion, id_genero) VALUES (3, 1); 
+INSERT INTO CANCION_GENERO (id_cancion, id_genero) VALUES (4, 3);
+INSERT INTO CANCION_GENERO (id_cancion, id_genero) VALUES (5, 1);
+INSERT INTO CANCION_GENERO (id_cancion, id_genero) VALUES (6, 1);
+INSERT INTO CANCION_GENERO (id_cancion, id_genero) VALUES (7, 1);
+INSERT INTO CANCION_GENERO (id_cancion, id_genero) VALUES (8, 1);
+INSERT INTO CANCION_GENERO (id_cancion, id_genero) VALUES (9, 3); 
+INSERT INTO CANCION_GENERO (id_cancion, id_genero) VALUES (10, 1);
+
+
+INSERT INTO CANCION_GENERO (id_cancion, id_genero) VALUES (11, 1); 
+INSERT INTO CANCION_GENERO (id_cancion, id_genero) VALUES (12, 4); 
+INSERT INTO CANCION_GENERO (id_cancion, id_genero) VALUES (13, 4); 
+INSERT INTO CANCION_GENERO (id_cancion, id_genero) VALUES (14, 4); 
+INSERT INTO CANCION_GENERO (id_cancion, id_genero) VALUES (15, 1);
+INSERT INTO CANCION_GENERO (id_cancion, id_genero) VALUES (16, 4);
+INSERT INTO CANCION_GENERO (id_cancion, id_genero) VALUES (17, 4);
+INSERT INTO CANCION_GENERO (id_cancion, id_genero) VALUES (18, 1);
+INSERT INTO CANCION_GENERO (id_cancion, id_genero) VALUES (19, 4);
+INSERT INTO CANCION_GENERO (id_cancion, id_genero) VALUES (20, 4);
+INSERT INTO CANCION_GENERO (id_cancion, id_genero) VALUES (21, 1);
+INSERT INTO CANCION_GENERO (id_cancion, id_genero) VALUES (22, 1);
+
+
+
+INSERT INTO CANCION_GENERO (id_cancion, id_genero) VALUES (23, 2);
+INSERT INTO CANCION_GENERO (id_cancion, id_genero) VALUES (23, 4);
+
+INSERT INTO CANCION_GENERO (id_cancion, id_genero) VALUES (24, 2);
+INSERT INTO CANCION_GENERO (id_cancion, id_genero) VALUES (25, 2); 
+INSERT INTO CANCION_GENERO (id_cancion, id_genero) VALUES (26, 2); 
+INSERT INTO CANCION_GENERO (id_cancion, id_genero) VALUES (27, 2);
+INSERT INTO CANCION_GENERO (id_cancion, id_genero) VALUES (28, 2); 
+INSERT INTO CANCION_GENERO (id_cancion, id_genero) VALUES (29, 2);
+INSERT INTO CANCION_GENERO (id_cancion, id_genero) VALUES (30, 2); 
+INSERT INTO CANCION_GENERO (id_cancion, id_genero) VALUES (31, 2); 
+INSERT INTO CANCION_GENERO (id_cancion, id_genero) VALUES (32, 2);
+INSERT INTO CANCION_GENERO (id_cancion, id_genero) VALUES (33, 2);
+INSERT INTO CANCION_GENERO (id_cancion, id_genero) VALUES (34, 2);
 
 COMMIT;
 
