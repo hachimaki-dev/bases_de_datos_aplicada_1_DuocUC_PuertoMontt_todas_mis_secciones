@@ -5,57 +5,44 @@ DROP TABLE  bloqueos CASCADE CONSTRAINTS;
 DROP TABLE  comentarios CASCADE CONSTRAINTS;
 DROP TABLE  amigos CASCADE CONSTRAINTS;
 
-
-CREATE TABLE usuario (
-
+CREATE TABLE usuario(
     id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    nombre VARCHAR2(20),
-    gmail VARCHAR2(20),
-    Verificado CHAR(1),
-    Fecha_de_registro DATE
-
-)
-
-CREATE TABLE contenido (
-
-    id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    nombre VARCHAR2(20),
-
-    id_tipo NUMBER REFERENCES tipo_contenido(id)
-
-)
+    nombre VARCHAR2(20) NOT NULL,
+    email VARCHAR2(20) NOT NULL UNIQUE ,
+    verificado CHAR(1) NOT NULL CHECK (verificado IN ('S' , 'N')) ,
+    fecha_de_registro TIMESTAMP DEFAULT SYSTIMESTAMP
+);
 
 CREATE TABLE tipo_contenido (
-
     id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    nombre_tipo VARCHAR2(20)
-    
-)
+    nombre_tipo VARCHAR2(20) NOT NULL CHECK ( nombre_tipo IN ('Publicacion', 'Reel', 'Historia', 'Instantanea'))
+);
 
-CREATE TABLE amigos (
-
+CREATE TABLE contenido (
     id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    nombre VARCHAR2(20),
+    id_tipo NUMBER REFERENCES tipo_contenido(id),
+    fecha_publicacion TIMESTAMP DEFAULT SYSTIMESTAMP
+);
 
-    amigo_de NUMBER REFERENCES usuario(id)
-    
-)
+
+
+CREATE TABLE amigos(
+    usuario NUMBER REFERENCES usuario(id),
+    amigo NUMBER REFERENCES usuario(id)
+);
 
 CREATE TABLE bloqueos (
-
     id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    nombre_del_bloqueado VARCHAR2(20),
-
-    quien_bloqueo NUMBER REFERENCES usuario(id)
-    
-)
+    id_usuario_que_bloquea NUMBER REFERENCES usuario(id),
+    id_usuario_bloqueado  NUMBER REFERENCES usuario(id)
+);
 
 CREATE TABLE  comentarios (
-
     id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    comentario VARCHAR2(20)
-    
-)
+    id_usuario NUMBER REFERENCES usuario(id),
+    comentario VARCHAR2(250) NOT NULL,
+    id_publicacion NUMBER REFERENCES contenido(id)
+);
 
 
 INSERT INTO  usuario (nombre, gmail, Verificado, Fecha_de_registro) VALUES ('Carlos Orellana Soto', 'carlos.orellana@mail.com', DATE '2025-03-10' );
