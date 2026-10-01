@@ -1,0 +1,67 @@
+CREATE TABLE USUARIO_CUENTA(
+    id_usuario_cuenta NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    nombre VARCHAR2(100) NOT NULL,
+    username VARCHAR2(100) NOT NULL UNIQUE,
+    correo  VARCHAR2(50) NOT NULL UNIQUE,
+    fecha_nacimiento DATE NOT NULL
+);
+
+CREATE TABLE USUARIO_INVITADO(
+    id_usuario_invitado NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY
+);
+
+
+
+CREATE TABLE PAIS(
+    id_pais NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    nombre_pais VARCHAR2(100) NOT NULL UNIQUE
+);
+
+CREATE TABLE CANAL (
+    id_canal NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    nombre VARCHAR2(100) NOT NULL UNIQUE,
+    usermane VARCHAR2(100) NOT NULL UNIQUE,
+    descripcion VARCHAR2(200),
+    esta_verificado CHAR(1) NOT NULL,
+    id_pais_origen REFERENCES PAIS(id_pais)
+);
+
+CREATE TABLE PUBLICACION (
+    id_publicacion NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    id_canal REFERENCES CANAL(id_canal) NOT NULL,
+    titulo VARCHAR2(100) NOT NULL,
+    descripcion VARCHAR2(200),
+    fecha_publicacion DATE,
+    duracion_segundos NUMBER,
+    id_categoria REFERENCES CATEGORIAS(id_categoria)
+
+);
+
+CREATE TABLE TIPO_PUBLCACION (
+    id_tipo_publicacion NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    nombre_tipo_publicacion VARCHAR2(100)
+);
+
+CREATE TABLE COMENTARIOS (
+    id_comentarios NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    contenido VARCHAR2(200),
+    fecha_publicacion DATE
+);
+
+CREATE TABLE COMENTARIOS_PUBLICACION (
+    id_usuario REFERENCES USUARIO(id_usuario),
+    id_publicacion REFERENCES PUBLICACION(id_publicacion)
+);
+
+CREATE TABLE CATEGORIAS (
+    id_categoria NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    nombre_categoria VARCHAR2(100) NOT NULL UNIQUE
+
+);
+
+--CREATE TABLE NOTIFICACIONES
+--create TABLE PAGO
+
+
+
+

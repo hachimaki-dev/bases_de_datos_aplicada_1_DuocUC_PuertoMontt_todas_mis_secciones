@@ -47,3 +47,4 @@ CREATE TABLE CANCION_GENERO(
 
 --INSERT INTO ARTISTA(nombre, esta_verificado, id_pais) VALUES ('31 mintos', 'S', 1);
 --INSERT INTO ARTISTA(nombre, esta_verificado, id_pais) VALUES ('Los bunkers', 'S', 1);
+--eleguir caso y crear su base de datos en 3ra forma normal, lo mas compleja
