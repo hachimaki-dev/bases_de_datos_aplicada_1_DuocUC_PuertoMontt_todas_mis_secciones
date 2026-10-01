@@ -45,5 +45,15 @@ CREATE TABLE CANCION_GENERO(
 );
 
 
+INSERT INTO PAIS(nombre) VALUES ('Chile');
+INSERT INTO PAIS(nombre) VALUES ('Argentina');
+INSERT INTO PAIS(nombre) VALUES ('Estados Unidos');
+INSERT INTO PAIS(nombre) VALUES ('Inglaterra');
+INSERT INTO PAIS(nombre) VALUES ('Alemania');
+COMMIT;
+
+
+
+
 --INSERT INTO ARTISTA(nombre, esta_verificado, id_pais) VALUES ('31 mintos', 'S', 1);
 --INSERT INTO ARTISTA(nombre, esta_verificado, id_pais) VALUES ('Los bunkers', 'S', 1);
