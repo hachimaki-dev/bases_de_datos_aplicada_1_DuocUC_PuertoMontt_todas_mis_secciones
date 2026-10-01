@@ -1,0 +1,109 @@
+
+
+CREATE TABLE PAIS(
+
+    id_pais NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    nombre_pais VARCHAR(20) NOT NULL UNIQUE
+
+);
+
+CREATE TABLE USUARIO(
+
+    id_usuario NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY
+    
+    
+
+
+
+
+
+);
+CREATE TABLE USUARIO_CUENTA(
+
+    id_usuario_cuenta NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    nombre_cuenta VARCHAR(20) NOT NULL UNIQUE,
+    correo VARCHAR(30) NOT NULL UNIQUE,
+    fecha_creacion_cuenta DATE NOT NULL,
+    fehca_nacimiento DATE NOT NULL
+
+
+
+);
+
+
+
+CREATE TABLE CANAL(
+   
+   id_canal NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+   nombre VARCHAR(20) NOT NULL UNIQUE,
+   esta_verificado CHAR(2),
+   id_pais NUMBER REFERENCES PAIS(id_pais),
+   id_usuario_CUENTA NUMBER REFERENCES USUARIO_CUENTA(id_usuario_CUENTA)
+
+
+
+
+
+);
+
+CREATE TABLE PUBLICACION(
+
+    id_publicacion NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    titulo VARCHAR(20) NOT NULL, 
+    duracion_segundos NUMBER NOT NULL,
+    fecha_publicacion DATE NOT NULL,
+    id_tipo_publicacion NUMBER REFERENCES TIPO_PUBLICACION(id_tipo_publicacion)
+
+
+
+);
+
+CREATE TABLE TIPO_PUBLICACION(
+
+    id_tipo_publicacion NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    nombre_publicaion VARCHAR(10)
+
+
+
+)
+CREATE TABLE ESTADISTICAS_VIDEOS(
+
+    id_Estadistica_video NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    visitas NUMBER NOT NULL,
+    suscripciones NUMBER NOT NULL,
+    likes NUMBER NOT NULL
+
+
+
+
+
+
+
+
+
+);
+CREATE TABLE COMENTARIOS(
+    
+    id_comentarios NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    fecha_publicacion DATE,
+    contenido VARCHAR(200)
+    
+
+
+);
+CREATE TABLE COMENTARIOS_PUBLICACION(
+    
+    id_usuario NUMBER REFERENCES USUARIO(id_usuario),
+    id_publicacion NUMBER REFERENCES PUBLICACION(id_publicacion)
+
+
+);
+
+CREATE TABLE CATEGORIAS_VIDEOS(
+
+    id_categoria NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    nombre_categoria VARCHAR(30) NOT NULL 
+)
+
+
+
