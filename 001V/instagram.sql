@@ -37,7 +37,7 @@ CREATE TABLE LIKES(
 CREATE TABLE SEGUIDORES(
     id_seguidor NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     nombre_seguidor VARCHAR2(100) NOT NULL,
-    fecha_seguimiento DATE,
+    fecha_seguimiento DATE
      
     
 );
