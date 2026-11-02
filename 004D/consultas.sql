@@ -1,0 +1,22 @@
+SELECT * FROM jugadores;
+
+SELECT NICKNAME, NOMBRE_REAL from JUGADORES;
+
+SELECT NICKNAME, 12 * SUELDO_MENSUAL AS SUELDO_ANUAL FROM JUGADORES;
+
+SELECT * FROM JUGADORES;
+
+
+-- Solo juagadores de Chile, la palbra es sensible no sirve si se escribe chile o CHILE.
+SELECT * FROM JUGADORES WHERE PAIS_NATAL = 'Chile';
+
+SELECT * FROM JUGADORES WHERE EDAD > 23;
+
+SELECT * FROM JUGADORES WHERE EDAD <= 23 AND PAIS_NATAL = 'Chile';
+
+
+-- Al ser un vista no es necesario colocar edad o pais natal por que vivien en la tabla
+SELECT NICKNAME, NOMBRE_REAL FROM JUGADORES WHERE EDAD <= 23 AND PAIS_NATAL = 'Chile';
+
+SELECT EDAD, PAIS_NATAL FROM JUGADORES WHERE EDAD >= 19 AND PAIS_NATAL = 'Chile' AND PAIS_NATAL = 'Estados Unidos';
+
