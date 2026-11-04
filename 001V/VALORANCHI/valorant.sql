@@ -199,6 +199,7 @@ SELECT * FROM JUGADORES;
 -- ALIAS (AS 'apodo')
 SELECT nickname, sueldo_mensual * 12 AS SUELDO_ANUAL FROM JUGADORES WHERE (edad >= 18);
 SELECT * FROM JUGADORES WHERE nickname LIKE '%z%';
+
 -- Actividad en clase (02-11-2026) --
 SELECT * FROM REGIONES; -- 1
 SELECT nombre, rol, origen_lore FROM AGENTES; -- 2
@@ -217,3 +218,17 @@ SELECT nombre, tag, presupuesto_anual FROM EQUIPOS ORDER BY presupuesto_anual DE
 SELECT nickname, edad, nombre_real FROM JUGADORES ORDER BY edad ASC; -- 15
 SELECT pais_natal, nickname, sueldo_mensual FROM JUGADORES ORDER BY pais_natal DESC, sueldo_mensual DESC; -- 16
 SELECT * FROM PARTIDAS ORDER BY fecha_partida DESC; -- 17
+SELECT jugador_id, partida_id, kills, puntaje_combate FROM PARTICIPACIONES WHERE gano = 'S' ORDER BY puntaje_combate DESC; -- 18
+SELECT * FROM PATROCINIOS ORDER BY tipo_contrato ASC, monto_anual DESC; -- 19
+SELECT COUNT(*) AS Total_jugadores, round(AVG(sueldo_mensual*12),0) AS Sueldo_promedio, MIN(sueldo_mensual) AS Sueldo_minimo, MAX(sueldo_mensual) AS Sueldo_maximo FROM JUGADORES; -- 20
+SELECT rol, COUNT(*) AS Total_Agentes FROM AGENTES GROUP BY rol; -- 21
+SELECT pais_natal, COUNT(*) AS Total_Jugadores FROM JUGADORES GROUP BY pais_natal ORDER BY Total_jugadores DESC; -- 22
+SELECT fase, COUNT(*) AS Partidas_jugadas, round(AVG(duracion_min),0) AS Duracion_promedio, SUM(asistencia_publico) AS Publico_acumulado FROM PARTIDAS GROUP BY fase; -- 23
+SELECT rubro, COUNT(*) AS Total_patrocinadores FROM PATROCINADORES GROUP BY rubro; -- 24
+SELECT tipo_contrato, COUNT(*) AS Cantidad_contratos, SUM(monto_anual) AS Monto_total FROM PATROCINIOS GROUP BY tipo_contrato ORDER BY Monto_total DESC; -- 25
+SELECT gano, COUNT(*) AS Cantidad_registros, ROUND(AVG(kills),0) AS Promedio_kills, ROUND(AVG(puntaje_combate),0) AS Promedio_ptjCombate FROM PARTICIPACIONES GROUP BY gano; -- 26
+SELECT equipo_id, COUNT(*) AS Cantidad_jugadores, MIN(sueldo_mensual) AS Sueldo_minimo, MAX(sueldo_mensual) AS Sueldo_maximo, SUM(sueldo_mensual) AS Total_sueldos FROM JUGADORES GROUP BY equipo_id ORDER BY Total_sueldos DESC; -- 27
+SELECT e.nombre AS NOMBRE_EQUIPO, e.tag, e.presupuesto_anual, r.nombre AS NOMBRE_DE_REGION FROM EQUIPOS e JOIN REGIONES r ON e.id = r.id; -- 28
+SELECT j.nickname, j.sueldo_mensual, e.nombre AS Nombre_Equipo FROM JUGADORES j JOIN EQUIPOS e ON j.id = e.id; -- 29
+SELECT p.id, p.fase, p.fecha_partida, p.duracion_min, m.nombre AS Nombre_mapa FROM PARTIDAS p JOIN MAPAS m ON p.id = m.id; -- 30
+SELECT e.nombre AS Nombre_Equipo, p.
