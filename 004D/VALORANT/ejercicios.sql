@@ -36,3 +36,24 @@ SELECT * FROM AGENTES WHERE ROL = 'Duelista' OR ROL = 'Iniciador' AND ORIGEN_LOR
  
 --  13 Mostrar las partidas cuya fase contenga la palabra 'Final' y tengan una asistencia_publico superior a 10000.
 SELECT * FROM PARTIDAS WHERE FASE LIKE '%Final%' AND asistencia_publico > 10000;
+
+--  14 Mostrar el nombre, tag y presupuesto_anual de los equipos, del mayor al menor presupuesto.
+SELECT NOMBRE, TAG, PRESUPUESTO_ANUAL FROM EQUIPOS ORDER BY PRESUPUESTO_ANUAL DESC;
+ 
+--  15 Mostrar el nickname, edad y nombre_real de los jugadores, desde el más joven al de mayor edad.
+SELECT NICKNAME, EDAD, NOMBRE_REAL FROM JUGADORES ORDER BY EDAD;
+ 
+--  16 Mostrar pais_natal, nickname y sueldo_mensual de los jugadores, ordenados por país natal (A–Z) y, en caso de empate, por sueldo de mayor a menor.
+SELECT PAIS_NATAL, NICKNAME, SUELDO_MENSUAL FROM JUGADORES ORDER BY PAIS_NATAL, SUELDO_MENSUAL DESC;
+ 
+--  17 Mostrar todas las partidas ordenadas desde la fecha más reciente a la más antigua.
+SELECT * FROM PARTIDAS ORDER BY FECHA_PARTIDA DESC;
+ 
+--  18 Mostrar las participaciones ganadas (gano = 'S'), proyectando jugador_id, partida_id, kills y puntaje_combate, ordenadas por puntaje_combate de mayor a menor.
+SELECT J.NICKNAME, P.JUGADOR_ID, P.PARTIDA_ID, P.KILLS, P.PUNTAJE_COMBATE 
+FROM PARTICIPACIONES P
+JOIN JUGADORES J ON J.ID = P.JUGADOR_ID 
+WHERE GANO = 'S' ORDER BY PUNTAJE_COMBATE DESC;
+ 
+--  19 Mostrar los registros de patrocinios ordenados por tipo_contrato (A–Z) y luego por monto_anual de mayor a menor.
+SELECT * FROM PATROCINIOS ORDER BY TIPO_CONTRATO, MONTO_ANUAL DESC;
