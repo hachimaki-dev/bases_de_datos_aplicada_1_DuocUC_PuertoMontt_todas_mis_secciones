@@ -51,3 +51,11 @@ SELECT * FROM PARTIDAS ORDER BY fecha_partida DESC;
 
 -- #18 Mostrar las participaciones ganadas (gano = 'S'), proyectando jugador_id, partida_id, kills y puntaje_combate, ordenadas por puntaje_combate de mayor a menor.
 -- SELECT jugador_id
+
+
+-- 20 Calcular en una sola fila la cantidad total de jugadores, el sueldo promedio, el sueldo mínimo y el sueldo máximo.
+
+
+-- 21 Mostrar cuántos agentes existen por cada rol.
+
+-- 22 Mostrar cuántos jugadores hay por cada pais_natal, ordenando de mayor a menor cantidad.
