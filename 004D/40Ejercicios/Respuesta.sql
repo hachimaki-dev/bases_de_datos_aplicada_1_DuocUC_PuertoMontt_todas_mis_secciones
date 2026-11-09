@@ -5,7 +5,7 @@ SELECT nombre, ROL, origen_lore from AGENTES;
 --3
 SELECT nickname, nombre_real, sueldo_mensual AS alias from JUGADORES;
 --4
-SELECT nickname, sueldo_mensual, sueldo_mensual * 12 AS sueldo_anual FROM JUGADORES;
+SELECT nickname, sueldo_mensual, sueldo_mensual * 12 AS SUELDO_ANUAL FROM JUGADORES;
 --5
 SELECT NOMBRE, TAG, presupuesto_anual / 1000000 as presupuesto_millones FROM EQUIPOS;
 --6
@@ -13,17 +13,17 @@ SELECT ID, KILLS, assists, deaths, kills + assists AS participacioN_OFENSIVA FRO
 --7
 SELECT NICKNAME, PAIS_NATAL, sueldo_mensual FROM JUGADORES WHERE PAIS_NATAL = 'Chile';
 --8
-
+SELECT NICKNAME, EDAD, SUELDO_MENSUAL FROM JUGADORES WHERE SUELDO_MENSUAL > 25000;
 --9
-
+SELECT NOMBRE, AMBIENTACION FROM MAPAS WHERE SITIOS_BOMBA = 3;
 --10
-
+SELECT NICKNAME, EDAD, SUELDO_MENSUAL FROM JUGADORES WHERE EDAD BETWEEN 19 AND 22;
 --11
-
+SELECT NICKNAME, PAIS_NATAL FROM JUGADORES WHERE PAIS_NATAL in ('Brasil', 'Canada', 'Rusia');
 --12
-
+SELECT * FROM AGENTES WHERE rol IN ('Duelista', 'Iniciador') AND origen_lore <> 'Desconocido';
 --13
-
+SELECT * FROM PARTIDAS WHERE fase LIKE '%Final%' AND asistencia_publico > 10000;
 --14
 SELECT * FROM EQUIPOS ORDER BY presupuesto_anual DESC;
 --15
@@ -37,3 +37,43 @@ SELECT * FROM PARTICIPACIONES ORDER BY PUNTAJE_COMBATE DESC;
 --19
 SELECT * FROM PATROCINIOS ORDER BY tipo_contrato ASC, monto_anual DESC;
 --20
+SELECT COUNT(JUGADORES), AVG(sueldo_mensual), MIN(), MAX()
+--21
+
+--22
+
+--23
+
+--24
+
+--25
+
+--26
+
+--27
+
+--28
+
+--29
+
+--30
+
+--31
+
+--32
+
+--33
+
+--34
+
+--35
+
+--36
+
+--37
+
+--38
+
+--39
+
+--40
