@@ -20,8 +20,41 @@ SELECT ID, KILLS, ASSISTS, DEATHS, KILLS + ASSISTS AS PARTICIPACION_OFENSIVA FRO
 SELECT NICKNAME, PAIS_NATAL, SUELDO_MENSUAL FROM JUGADORES WHERE PAIS_NATAL = 'Chile';
 
 --Ejercicio #8
+SELECT NICKNAME, EDAD, SUELDO_MENSUAL FROM JUGADORES WHERE SUELDO_MENSUAL > 25000;
+
 --Ejercicio #9
+SELECT NOMBRE, AMBIENTACION FROM MAPAS WHERE SITIOS_BOMBA = 3;
+
 --Ejercicio #10
+SELECT NICKNAME, EDAD, SUELDO_MENSUAL FROM JUGADORES WHERE EDAD >= 19 AND EDAD <= 22;
+
 --Ejercicio #11
+SELECT NICKNAME, PAIS_NATAL FROM JUGADORES WHERE PAIS_NATAL IN ('Brasil', 'Canada', 'Rusia');
+
 --Ejercicio #12
+SELECT * FROM AGENTES WHERE ROL IN ('Duelista', 'Iniciador') AND ORIGEN_LORE <> 'Desconocido';
+
 --Ejercicio #13
+SELECT * FROM PARTIDAS WHERE FASE LIKE '%Final%' AND ASISTENCIA_PUBLICO > 10000;
+
+--Ejercicio #14
+--Ejercicio #15
+--Ejercicio #16
+--Ejercicio #17
+--Ejercicio #18
+--Ejercicio #19
+--Ejercicio #20
+--Ejercicio #21
+--Ejercicio #22
+--Ejercicio #23
+--Ejercicio #24
+--Ejercicio #25
+--Ejercicio #26
+--Ejercicio #27
+--Ejercicio #28
+--Ejercicio #29
+--Ejercicio #30
+--Ejercicio #31
+--Ejercicio #32
+--Ejercicio #33
+--Ejercicio #34
