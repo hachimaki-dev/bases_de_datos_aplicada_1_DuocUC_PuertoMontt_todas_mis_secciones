@@ -59,3 +59,70 @@ SELECT jugador_id, partida_id, kills, puntaje_combate FROM participaciones WHERE
 
 -- 19. Mostrar los registros de patrocinios ordenados por tipo_contrato (A–Z) y luego por monto_anual de mayor a menor.
 SELECT * FROM patrocinios ORDER BY tipo_contrato, monto_anual DESC;
+
+
+-- == PARTE 4: GROUP BY ==
+-- 20 Calcular en una sola fila la cantidad total de jugadores, el sueldo promedio, el sueldo mínimo y el sueldo máximo.
+SELECT COUNT(*), AVG(sueldo_mensual), MIN(sueldo_mensual), MAX(sueldo_mensual) FROM jugadores;
+
+-- 21 Mostrar cuántos agentes existen por cada rol.
+SELECT rol, SUM(rol) FROM agentes ORDER BY rol;
+
+-- 22 Mostrar cuántos jugadores hay por cada pais_natal, ordenando de mayor a menor cantidad.
+SELECT COUNT(pais_natal) AS cantidad_registro FROM jugadores ORDER BY pais_natal DESC;
+
+-- 23 Por cada fase en la tabla partidas, mostrar cuántas partidas se jugaron, la duración promedio y el total de público acumulado.
+
+
+-- 24 Mostrar cuántos patrocinadores existen por cada rubro.
+
+
+-- 25 En patrocinios, mostrar por cada tipo_contrato la cantidad de contratos y la suma de monto_anual, ordenado de mayor a menor monto total.
+
+
+-- 26 En participaciones, agrupar por gano (S o N) y mostrar la cantidad de registros, el promedio de kills y el promedio de puntaje_combate.
+
+
+-- 27 En jugadores, mostrar por cada equipo_id la cantidad de jugadores, el sueldo mínimo, el sueldo máximo y la suma de sueldos.
+
+
+
+-- == PARTE 5: JOIN ==
+-- 28 Mostrar el nombre del equipo, su tag, su presupuesto_anual y el nombre de la región a la que pertenece.
+
+
+-- 29 Mostrar el nickname del jugador, su sueldo_mensual y el nombre de su equipo, ordenado por equipo (A–Z) y sueldo de mayor a menor.
+
+
+-- 30 Mostrar el id de la partida, la fase, la fecha_partida, la duracion_min y el nombre del mapa jugado.
+
+
+-- 31 Mostrar el nombre del equipo, el nombre del patrocinador, el tipo_contrato y el monto_anual.
+
+
+-- 32 Mostrar el nickname del jugador, el nombre de su equipo y el nombre de la región a la que pertenece ese equipo.
+
+
+-- 33 Mostrar el nickname del jugador, el nombre del agente utilizado, su rol, las kills y el puntaje_combate en cada participación, ordenado por kills de mayor a menor.
+
+
+-- 34 Mostrar el nickname del jugador, la fase de la partida, el nombre del mapa y las kills logradas únicamente en la 'Gran Final'.
+
+
+-- == PARTE 6: Integradores ==
+-- 35 Mostrar el nombre de cada región y la suma de presupuesto_anual de sus equipos, ordenado de mayor a menor presupuesto total.
+
+
+-- 36 Mostrar el nombre de cada equipo, cuántos patrocinios tiene y el monto total anual que recibe por patrocinios, ordenado de mayor a menor monto.
+
+
+-- 37 Mostrar el nickname de cada jugador, cuántas partidas jugó, el total de kills acumuladas y su promedio de puntaje_combate, ordenado por total de kills de mayor a menor.
+
+
+-- 38 Mostrar el nombre de cada agente, su rol, cuántas veces fue elegido y el promedio de kills obtenido con él, ordenado desde el más elegido al menos elegido.
+
+
+-- 39 Mostrar el nombre de cada mapa, cuántas partidas se jugaron en él y la duración promedio de esas partidas, ordenado de mayor a menor duración promedio.
+
+
+-- 40 Mostrar el nombre de cada equipo y el total de kills logradas por sus jugadores únicamente en las participaciones ganadas (gano = 'S'), ordenado de mayor a menor.
