@@ -231,4 +231,21 @@ SELECT equipo_id, COUNT(*) AS Cantidad_jugadores, MIN(sueldo_mensual) AS Sueldo_
 SELECT e.nombre AS NOMBRE_EQUIPO, e.tag, e.presupuesto_anual, r.nombre AS NOMBRE_DE_REGION FROM EQUIPOS e JOIN REGIONES r ON e.id = r.id; -- 28
 SELECT j.nickname, j.sueldo_mensual, e.nombre AS Nombre_Equipo FROM JUGADORES j JOIN EQUIPOS e ON j.id = e.id; -- 29
 SELECT p.id, p.fase, p.fecha_partida, p.duracion_min, m.nombre AS Nombre_mapa FROM PARTIDAS p JOIN MAPAS m ON p.id = m.id; -- 30
-SELECT e.nombre AS Nombre_Equipo, p.
+SELECT e.nombre AS Nombre_Equipo, p.nombre AS Nombre_Patrocinador, pt.tipo_contrato, pt.monto_anual FROM PATROCINIOS pt JOIN EQUIPOS e ON pt.equipo_id = e.id JOIN PATROCINADORES p ON pt.patrocinador_id = p.id; -- 31
+SELECT j.nickname AS NICKNAME, e.nombre AS NOMBRE_EQUIPO, r.nombre AS NOMBRE_REGION FROM JUGADORES j JOIN EQUIPOS e ON j.equipo_id = e.id JOIN REGIONES r ON e.region_id = r.id; -- 32
+SELECT j.nickname AS JUGADOR, a.nombre AS AGENTE, a.rol AS ROL, p.kills AS KILLS, p.puntaje_combate AS PUNTAJE_COMBATE FROM PARTICIPACIONES p JOIN JUGADORES j ON p.jugador_id = j.id JOIN AGENTES a ON p.agente_id = a.id ORDER BY p.kills DESC; -- 33
+SELECT j.nickname AS JUGADOR, g.fase AS FASE, m.nombre AS MAPA, p.kills AS KILLS FROM PARTICIPACIONES p JOIN JUGADORES j ON p.jugador_id = j.id JOIN PARTIDAS g ON p.partida_id = g.id JOIN MAPAS m ON g.mapa_id = m.id WHERE g.fase LIKE '%Gran Final%'; -- 34
+SELECT r.nombre AS REGION, SUM(e.presupuesto_anual) AS PRESUPUESTO_TOTAL FROM EQUIPOS e JOIN REGIONES r ON e.region_id = r.id GROUP BY r.nombre ORDER BY PRESUPUESTO_TOTAL DESC; -- 35
+SELECT e.nombre AS EQUIPO, COUNT(p.equipo_id) AS CANT_PATROCINIOS, SUM(p.monto_anual) AS MONTO_ANUAL_TOTAL FROM PATROCINIOS p JOIN EQUIPOS e ON p.equipo_id = e.id GROUP BY e.nombre ORDER BY MONTO_ANUAL_TOTAL DESC; -- 36
+SELECT j.nickname AS JUGADOR, COUNT(p.partida_id) AS PARTIDAS_JUGADAS, SUM(p.kills) AS TOTAL_KILLS, ROUND(AVG(p.puntaje_combate),0) AS PROMEDIO_PTJ_COMBATE FROM PARTICIPACIONES p JOIN JUGADORES j ON p.jugador_id = j.id GROUP BY j.nickname ORDER BY TOTAL_KILLS DESC; -- 37
+SELECT ag.nombre AS AGENTE, ag.rol AS ROL, COUNT(p.agente_id) AS VECES_JUGADO, ROUND(AVG(p.kills),0) AS KILLS_PROMEDIO FROM PARTICIPACIONES p JOIN AGENTES ag ON p.agente_id = ag.id GROUP BY ag.nombre ORDER BY VECES_JUGADO DESC; -- 38
+SELECT m.nombre AS MAPA, COUNT(p.mapa_id) AS VECES_JUGADO, ROUND(AVG(p.duracion_min),1) AS DURACION_PROMEDIO FROM PARTIDAS p JOIN MAPAS m ON p.mapa_id = m.id GROUP BY m.nombre ORDER BY DURACION_PROMEDIO DESC; -- 39
+SELECT e.nombre AS EQUIPO, SUM(p.kills) AS TOTAL_KILLS FROM PARTICIPACIONES p JOIN EQUIPOS e ON ;
+
+
+SELECT  j.NICKNAME, e.NOMBRE, p.KILLS, pa.fecha_partida FROM PARTICIPACIONES  p 
+JOIN JUGADORES j ON p.jugador_id = j.id 
+JOIN EQUIPOS e ON e.id = j.equipo_id
+JOIN PARTIDAS pa ON pa.id = p.partida_id
+WHERE p.GANO = 'S' ORDER BY p.KILLS DESC
+; 
