@@ -23,3 +23,8 @@ JOIN PARTICIPACIONES p ON p.JUGADOR_ID = j.ID
 JOIN PARTIDAS pa ON p.PARTIDA_ID = pa.ID 
 JOIN MAPAS ma ON pa.MAPA_ID = ma.ID
 WHERE pa.FASE = 'Gran Final'  ORDER BY KILLS DESC;
+
+
+--26
+-- En participaciones, agrupar por gano (S o N) y mostrar la cantidad de registros, el promedio de kills y el promedio de puntaje_combate.
+SELECT GANO, ROUND(AVG(kills) ,2) AS PROMEDIO_ASESINATOS, COUNT(ID) AS CANTIDAD_PARTIDAS, ROUND(AVG(PUNTAJE_COMBATE),2) AS PROMEDIO_PUNTAJE_COMBATE FROM PARTICIPACIONES GROUP BY GANO;
