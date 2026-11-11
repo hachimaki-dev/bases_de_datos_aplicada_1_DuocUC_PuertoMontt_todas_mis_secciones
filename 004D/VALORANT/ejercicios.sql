@@ -66,45 +66,45 @@ SELECT * FROM patrocinios ORDER BY tipo_contrato, monto_anual DESC;
 SELECT COUNT(*), AVG(sueldo_mensual), MIN(sueldo_mensual), MAX(sueldo_mensual) FROM jugadores;
 
 -- 21 Mostrar cuántos agentes existen por cada rol.
-SELECT rol, SUM(rol) FROM agentes ORDER BY rol;
+SELECT rol, COUNT(*) AS cant_agentes FROM agentes ORDER BY rol;
 
 -- 22 Mostrar cuántos jugadores hay por cada pais_natal, ordenando de mayor a menor cantidad.
-SELECT COUNT(pais_natal) AS cantidad_registro FROM jugadores ORDER BY pais_natal DESC;
+SELECT pais_natal, COUNT(*) AS cantidad_registro FROM jugadores ORDER BY pais_natal DESC;
 
 -- 23 Por cada fase en la tabla partidas, mostrar cuántas partidas se jugaron, la duración promedio y el total de público acumulado.
-
+SELECT COUNT(*), AVG(duracion_min) AS promedio_duracion, SUM(asistencia_publico) AS total_publico FROM partidas;
 
 -- 24 Mostrar cuántos patrocinadores existen por cada rubro.
-
+SELECT rubro, COUNT(*) FROM patrocinadores ORDER BY rubro;
 
 -- 25 En patrocinios, mostrar por cada tipo_contrato la cantidad de contratos y la suma de monto_anual, ordenado de mayor a menor monto total.
-
+SELECT tipo_contrato, SUM(monto_anual) AS suma_monto FROM patrocinios ORDER BY tipo_contrato DESC;
 
 -- 26 En participaciones, agrupar por gano (S o N) y mostrar la cantidad de registros, el promedio de kills y el promedio de puntaje_combate.
-
+SELECT cantidad_registro, AVG(kills) AS promedio_kills, AVG(puntaje_combate) FROM participaciones ORDER BY gano;
 
 -- 27 En jugadores, mostrar por cada equipo_id la cantidad de jugadores, el sueldo mínimo, el sueldo máximo y la suma de sueldos.
-
+SELECT COUNT(*) AS cant_jugadores, MIN(sueldo_mensual) AS sueldo_minimo, MAX(sueldo_mensual) AS sueldo_maximo FROM jugadores ORDER BY equipo_id
 
 
 -- == PARTE 5: JOIN ==
 -- 28 Mostrar el nombre del equipo, su tag, su presupuesto_anual y el nombre de la región a la que pertenece.
-
+SELECT e.nombre, e.tag, e.presupuesto_anual, r.nombre FROM equipos e JOIN regiones r ON e.region_id = r.id;
 
 -- 29 Mostrar el nickname del jugador, su sueldo_mensual y el nombre de su equipo, ordenado por equipo (A–Z) y sueldo de mayor a menor.
-
+SELECT j.nickname, j.sueldo_mensual, e.nombre FROM jugadores j JOIN equipos e ON j.equipo_id = e.id ORDER BY e.nombre, j.sueldo_mensual DESC;
 
 -- 30 Mostrar el id de la partida, la fase, la fecha_partida, la duracion_min y el nombre del mapa jugado.
-
+SELECT p.id, p.fase, p.fecha_partida, p.duracion_min, m.nombre FROM partidas p JOIN mapas m ON p.mapa_id = m.id
 
 -- 31 Mostrar el nombre del equipo, el nombre del patrocinador, el tipo_contrato y el monto_anual.
-
+SELECT e.nombre, pt.nombre, pc.tipo_contrato, pc.monto_anual FROM patrocinios pc JOIN equipos eq ON pc.equipo_id = eq.id JOIN patrocinador pt ON pc.patrocinador_id = pt.id;
 
 -- 32 Mostrar el nickname del jugador, el nombre de su equipo y el nombre de la región a la que pertenece ese equipo.
-
+SELECT j.nickname, e.nombre, r.nombre FROM jugadores j JOIN equipos e ON j.equipo_id = e.id JOIN regiones r ON e.region_id = r.id;
 
 -- 33 Mostrar el nickname del jugador, el nombre del agente utilizado, su rol, las kills y el puntaje_combate en cada participación, ordenado por kills de mayor a menor.
-
+SELECT j.nickname, a.nombre, a.rol, p.kills, p.puntaje_combate FROM participaciones p JOIN jugadores j ON p.jugador_id = j.id JOIN agentes a ON p.agente_id = a.id ORDER BY kills DESC;
 
 -- 34 Mostrar el nickname del jugador, la fase de la partida, el nombre del mapa y las kills logradas únicamente en la 'Gran Final'.
 
