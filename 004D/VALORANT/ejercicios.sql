@@ -111,18 +111,19 @@ SELECT j.nickname, a.nombre, a.rol, p.kills, p.puntaje_combate FROM participacio
 
 -- == PARTE 6: Integradores ==
 -- 35 Mostrar el nombre de cada región y la suma de presupuesto_anual de sus equipos, ordenado de mayor a menor presupuesto total.
-
+SELECT r.nombre, e.presupuesto_anual FROM equipos e JOIN regiones r ON e.region_id = r.id ORDER BY presupuesto_anual DESC;
 
 -- 36 Mostrar el nombre de cada equipo, cuántos patrocinios tiene y el monto total anual que recibe por patrocinios, ordenado de mayor a menor monto.
-
+SELECT e.nombre, COUNT(*) AS cant_patrocinios, p.monto_anual FROM patrocinios p JOIN equipos e ON p.equipo_id = e.id ORDER BY monto_anual DESC;
 
 -- 37 Mostrar el nickname de cada jugador, cuántas partidas jugó, el total de kills acumuladas y su promedio de puntaje_combate, ordenado por total de kills de mayor a menor.
-
+SELECT j.nickname, COUNT(*) AS cant_partcipaciones, SUM(p.kills), AVG(p.puntaje_combate) FROM participaciones p JOIN jugadores j ON p.jugador_id = j.id ORDER BY kills DESC;
 
 -- 38 Mostrar el nombre de cada agente, su rol, cuántas veces fue elegido y el promedio de kills obtenido con él, ordenado desde el más elegido al menos elegido.
-
+SELECT a.nombre, a.rol, COUNT(*), AVG(p.kills) FROM participaciones p JOIN agentes a ON p.agente_id = a.id;
 
 -- 39 Mostrar el nombre de cada mapa, cuántas partidas se jugaron en él y la duración promedio de esas partidas, ordenado de mayor a menor duración promedio.
-
+SELECT m.nombre, COUNT(*) AS partidas_mapa, AVG(p.duracion_min) FROM participaciones p JOIN mapas m ON p.mapa_id = m.id ORDER BY p.duracion_min DESC;
 
 -- 40 Mostrar el nombre de cada equipo y el total de kills logradas por sus jugadores únicamente en las participaciones ganadas (gano = 'S'), ordenado de mayor a menor.
+SELECT e.nombre, p.kills FROM participaciones p JOIN euipos e ON p.equipo_id = e.id WHERE gano = 'S' ORDER BY p.kills DESC;
