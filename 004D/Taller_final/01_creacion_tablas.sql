@@ -1,0 +1,70 @@
+DROP TABLE detalle_factura CASCADE CONSTRAINTS;
+DROP TABLE facturas CASCADE CONSTRAINTS;
+DROP TABLE vendedores CASCADE CONSTRAINTS;
+DROP TABLE articulos CASCADE CONSTRAINTS;
+DROP TABLE clientes CASCADE CONSTRAINTS;
+DROP TABLE zonas CASCADE CONSTRAINTS;
+DROP TABLE categorias CASCADE CONSTRAINTS;
+DROP TABLE marcas CASCADE CONSTRAINTS;
+DROP TABLE comunas CASCADE CONSTRAINTS;
+
+CREATE TABLE comunas (
+    id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    nom_comuna  VARCHAR2(40) NOT NULL
+);
+
+CREATE TABLE marcas (
+    id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    nom_marca   VARCHAR2(40) NOT NULL
+);
+
+CREATE TABLE categorias (
+    id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    nom_categoria  VARCHAR2(30) NOT NULL,
+    porcentaje     NUMBER(2)    NOT NULL
+);
+
+CREATE TABLE zonas (
+    id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    nom_zona  VARCHAR2(4)  NOT NULL,
+    porc      NUMBER(2)    NOT NULL
+);
+
+-- IMPLEMENTE AQUÍ LAS TABLAS CLIENTES, ARTICULOS, VENDEDORES, FACTURAS
+CREATE TABLE cliente(
+    id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    nombre_cliente VARCHAR2(60),
+    direccion VARCHAR(60),
+    telefono VARCHAR2(15),
+    comuna_id NUMBER NOT NULL REFERENCES comunas(id)
+);
+
+CREATE TABLE articulos(
+    id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    nombre_cliente VARCHAR2(60),
+    precio NUMBER(8),
+    stock_actual NUMBER(5),
+    stock_minimo NUMBER(5),
+    marcas_id NUMBER NOT NULL REFERENCES marcas(id)
+);
+
+CREATE TABLE vendedores(
+    id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    rut_vendedor VARCHAR2(12) NOT NULL UNIQUE,
+    nombres VARCHAR2(30),
+    paterno VARCHAR2(30),
+    materno VARCHAR2(30),
+    fec_nac DATE,
+    fec_contrato DATE,
+    sueldo NUMBER(8),
+    comision NUMBER(4,2),
+    zonas_id NUMBER NOT NULL REFERENCES zonas(id),
+    categorias_id NUMBER NOT NULL REFERENCES categorias(id)
+);
+
+CREATE TABLE facturas(
+    zonas_id NUMBER NOT NULL REFERENCES zonas(id),
+    cliente_id NUMBER NOT NULL REFERENCES cliente(id),
+    vendedores NUMBER NOT NULL REFERENCES vendedores(id)
+);
+-- Y LA TABLA FALTANTE DETALLE_FACTURA:
