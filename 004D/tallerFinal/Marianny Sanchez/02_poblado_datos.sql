@@ -21,3 +21,9 @@ INSERT INTO zonas (nom_zona, porc) VALUES ('Sur Austral', 10.48);
 INSERT INTO zonas (nom_zona, porc) VALUES ('Cordillera', 11.27);
 INSERT INTO zonas (nom_zona, porc) VALUES ('Costera', 7.24);
 INSERT INTO zonas (nom_zona, porc) VALUES ('Insular Chiloe', 7.24);
+
+INSERT INTO clientes (nombre_cliente, direccion, telefono, comuna_id) VALUES ('ALCARAZ NOVOA MONTSERRAT', 'AV. DIEGO PORTALES 450', '5694522114', 1);
+INSERT INTO clientes (nombre_cliente, direccion, telefono, comuna_id) VALUES ('JIMENEZ LORCA ELENA', 'SAN PEDRO 520 DPTO. K', '5696665443', 2); -- solo llegue hasta aqui
+INSERT INTO clientes (nombre_cliente, direccion, telefono, comuna_id) VALUES ('ALCARAZ NOVOA MONTSERRAT', 'AV. DIEGO PORTALES 450', '5694522114', 1);
+INSERT INTO clientes (nombre_cliente, direccion, telefono, comuna_id) VALUES ('ALCARAZ NOVOA MONTSERRAT', 'AV. DIEGO PORTALES 450', '5694522114', 1);
+INSERT INTO clientes (nombre_cliente, direccion, telefono, comuna_id) VALUES ('ALCARAZ NOVOA MONTSERRAT', 'AV. DIEGO PORTALES 450', '5694522114', 1);
