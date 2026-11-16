@@ -1,0 +1,1 @@
+SELECT v.*, df.cantidad * a.precio AS monto_total_por_vendedor FROM detalle_factura df JOIN articulos a ON df.articulo_id = a.id JOIN factura f ON df.factura_id = f.id JOIN vendedor v ON f.vendedor_id = v.id;
