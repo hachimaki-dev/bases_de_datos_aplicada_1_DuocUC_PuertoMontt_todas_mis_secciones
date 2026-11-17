@@ -45,8 +45,32 @@ INSERT INTO ARTICULOS(nombre_articulo, precio, stock_actual, stock_minimo, marca
 COMMIT;
 
 INSERT INTO VENDEDORES(rut_vendedor, nombres, paterno, materno, fec_nac, fec_contrato, sueldo, comision, zona_id, categoria_id ) VALUES (11111112-6, 'BENITO', 'ORDENES', 'ROMERO', DATE '1983-05-22', DATE '2018-04-16', 550000, 0.13, 1, 3 );
-INSERT INTO VENDEDORES(rut_vendedor, nombres, paterno, materno, fec_nac, fec_contrato, sueldo, comision, zona_id, categoria_id ) VALUES (11111112-6, 'BENITO', 'ORDENES', 'ROMERO', DATE '1983-05-22', DATE '2018-04-16', 550000, 0.13, 1, 3 );
+INSERT INTO VENDEDORES(rut_vendedor, nombres, paterno, materno, fec_nac, fec_contrato, sueldo, comision, zona_id, categoria_id ) VALUES (12222222-3, 'MARTA', 'VIVEROS', NULL, DATE '1988-08-07', DATE '2020-07-02', 545000, 0.07, 2, 2 );
+INSERT INTO VENDEDORES(rut_vendedor, nombres, paterno, materno, fec_nac, fec_contrato, sueldo, comision, zona_id, categoria_id ) VALUES (13333333-K, 'OSCAR', 'CACERES', 'LAGOS', DATE '1989-10-09', DATE '2021-09-03', 567400, 0.13, 1, 1 );
+INSERT INTO VENDEDORES(rut_vendedor, nombres, paterno, materno, fec_nac, fec_contrato, sueldo, comision, zona_id, categoria_id ) VALUES (14444444-5, 'MILENA', 'MENA', 'CARTES', DATE '1992-12-08', DATE '2019-11-03', 573620, 0.05, 3, 3 );
+INSERT INTO VENDEDORES(rut_vendedor, nombres, paterno, materno, fec_nac, fec_contrato, sueldo, comision, zona_id, categoria_id ) VALUES (15555555-6, 'ESTEBAN', 'ROMERO', NULL, DATE '1995-12-08', DATE '2023-11-03', 573620, 0.08, NULL, 3);
+COMMIT;
 
+INSERT INTO FACTURAS(cliente_id, vendedor_id, fecha_factura) VALUES (1, 2, DATE '2026-01-18');
+INSERT INTO FACTURAS(cliente_id, vendedor_id, fecha_factura) VALUES (2, 4, DATE '2026-01-18');
+INSERT INTO FACTURAS(cliente_id, vendedor_id, fecha_factura) VALUES (4, 3, DATE '2026-01-18');
+INSERT INTO FACTURAS(cliente_id, vendedor_id, fecha_factura) VALUES (3, 5, DATE '2026-01-18');
+INSERT INTO FACTURAS(cliente_id, vendedor_id, fecha_factura) VALUES (2, 2, DATE '2026-01-18');
+COMMIT;
+
+INSERT INTO DETALLE_FACTURA(factura_id, articulo_id, cantidad) VALUES (1, 1, 20);
+INSERT INTO DETALLE_FACTURA(factura_id, articulo_id, cantidad) VALUES (5, 5, 23);
+INSERT INTO DETALLE_FACTURA(factura_id, articulo_id, cantidad) VALUES (3, 3, 38);
+INSERT INTO DETALLE_FACTURA(factura_id, articulo_id, cantidad) VALUES (4, 4, 43);
+INSERT INTO DETALLE_FACTURA(factura_id, articulo_id, cantidad) VALUES (1, 1, 48);
+INSERT INTO DETALLE_FACTURA(factura_id, articulo_id, cantidad) VALUES (4, 4, 30);
+INSERT INTO DETALLE_FACTURA(factura_id, articulo_id, cantidad) VALUES (2, 2, 20);
+INSERT INTO DETALLE_FACTURA(factura_id, articulo_id, cantidad) VALUES (5, 5, 60);
+INSERT INTO DETALLE_FACTURA(factura_id, articulo_id, cantidad) VALUES (2, 2, 45);
+INSERT INTO DETALLE_FACTURA(factura_id, articulo_id, cantidad) VALUES (3, 3, 35);
+INSERT INTO DETALLE_FACTURA(factura_id, articulo_id, cantidad) VALUES (4, 4, 29);
+INSERT INTO DETALLE_FACTURA(factura_id, articulo_id, cantidad) VALUES (5, 5, 28);
+INSERT INTO DETALLE_FACTURA(factura_id, articulo_id, cantidad) VALUES (2, 2, 21);
 
 
 
