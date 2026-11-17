@@ -1,0 +1,85 @@
+-- ============================================================================
+-- ANEXO 1: SCRIPT BASE INCOMPLETO — CASO TIENDA AKIBASUR
+-- Importante: Corrija los tipos de datos y restricciones de las 4 tablas base
+-- y agregue las sentencias CREATE TABLE faltantes.
+-- ============================================================================
+
+DROP TABLE detalle_factura CASCADE CONSTRAINTS;
+DROP TABLE facturas CASCADE CONSTRAINTS;
+DROP TABLE vendedores CASCADE CONSTRAINTS;
+DROP TABLE articulos CASCADE CONSTRAINTS;
+DROP TABLE clientes CASCADE CONSTRAINTS;
+DROP TABLE zonas CASCADE CONSTRAINTS;
+DROP TABLE categorias CASCADE CONSTRAINTS;
+DROP TABLE marcas CASCADE CONSTRAINTS;
+DROP TABLE comunas CASCADE CONSTRAINTS;
+
+CREATE TABLE COMUNAS (
+    id_comuna NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    nombre_comuna VARCHAR2(40) NOT NULL UNIQUE
+);
+
+CREATE TABLE MARCAS (
+    id_marca NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    nombre_marca VARCHAR2(40) NOT NULL UNIQUE
+);
+
+CREATE TABLE CATEGORIAS (
+    id_categoria NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    nombre_categoria VARCHAR2(30) NOT NULL,
+    porcentaje NUMBER(4, 1) NOT NULL CHECK (porcentaje > 0)
+);
+
+CREATE TABLE ZONAS (
+    id_zona NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    nombre_zona VARCHAR2(40) NOT NULL UNIQUE,
+    porc NUMBER(4, 2) NOT NULL CHECK (porc > 0)
+);
+
+-- IMPLEMENTE AQUÍ LAS TABLAS CLIENTES, ARTICULOS, VENDEDORES, FACTURAS
+-- Y LA TABLA FALTANTE DETALLE_FACTURA:
+
+CREATE TABLE CLIENTES (
+    id_cliente NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    nombre_cliente VARCHAR2(60) NOT NULL,
+    direccion VARCHAR2(60) NOT NULL,
+    telefono VARCHAR2(15) NOT NULL,
+    comuna_id NUMBER NOT NULL REFERENCES COMUNAS(id_comuna)
+);
+
+CREATE TABLE ARTICULOS (
+    id_articulo NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    nombre_articulo VARCHAR2(50) NOT NULL,
+    precio NUMBER(8) NOT NULL CHECK (precio > 0),
+    stock_actual NUMBER(5) NOT NULL CHECK (stock_actual > 10),
+    stock_minimo NUMBER(5) NOT NULL CHECK (stock_minimo > 0),
+    marca_id NUMBER NOT NULL REFERENCES MARCAS(id_marca)
+);
+
+CREATE TABLE VENDEDORES (
+    id_vendedor NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    rut_vendedor VARCHAR2(12) NOT NULL UNIQUE,
+    nombres VARCHAR2(30) NOT NULL,
+    paterno VARCHAR2(30) NOT NULL,
+    materno VARCHAR2(30),
+    fecha_nacimiento DATE NOT NULL,
+    fecha_contrato DATE NOT NULL,
+    sueldo NUMBER(8) NOT NULL,
+    comision NUMBER(4, 2) NOT NULL,
+    zona_id NUMBER REFERENCES ZONAS(id_zona),
+    categoria_id NUMBER NOT NULL REFERENCES CATEGORIAS(id_categoria)
+);
+
+CREATE TABLE FACTURAS(
+    id_factura NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    cliente_id NUMBER NOT NULL REFERENCES CLIENTES(id_cliente),
+    vendedor_id NUMBER NOT NULL REFERENCES VENDEDORES(id_vendedor),
+    fecha_factura DATE DEFAULT SYSDATE NOT NULL
+);
+
+CREATE TABLE DETALLE_FACTURA(
+    id_detalle_factura NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    factura_id NUMBER NOT NULL REFERENCES FACTURAS(id_factura),
+    articulo_id NUMBER NOT NULL REFERENCES ARTICULOS(id_articulo),
+    cantidad NUMBER(4) NOT NULL CHECK (cantidad > 0)
+);
