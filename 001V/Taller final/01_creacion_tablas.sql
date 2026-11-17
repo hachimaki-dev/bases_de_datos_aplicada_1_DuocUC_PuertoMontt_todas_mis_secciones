@@ -1,0 +1,80 @@
+DROP TABLE detalle_factura CASCADE CONSTRAINTS;
+DROP TABLE facturas CASCADE CONSTRAINTS;
+DROP TABLE vendedores CASCADE CONSTRAINTS;
+DROP TABLE articulos CASCADE CONSTRAINTS;
+DROP TABLE clientes CASCADE CONSTRAINTS;
+DROP TABLE zonas CASCADE CONSTRAINTS;
+DROP TABLE categorias CASCADE CONSTRAINTS;
+DROP TABLE marcas CASCADE CONSTRAINTS;
+DROP TABLE comunas CASCADE CONSTRAINTS;
+
+CREATE TABLE comunas (
+    id_comunas NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    nom_comuna VARCHAR2(40) NOT NULL UNIQUE
+);
+
+CREATE TABLE marcas (
+    id_marcas NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    nom_marca VARCHAR2(40) NOT NULL UNIQUE
+);
+
+CREATE TABLE categorias (
+    id_categorias NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    nom_categoria VARCHAR2(30) NOT NULL,
+    porcentaje NUMBER(4, 1) NOT NULL CHECK(porcentaje > 0)
+);
+
+CREATE TABLE zonas (
+    id_zonas NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    nom_zona VARCHAR2(40) NOT NULL UNIQUE,
+    porc NUMBER(4, 2) NOT NULL CHECK(porc > 0)
+);
+
+-- IMPLEMENTE AQUÍ LAS TABLAS CLIENTES, ARTICULOS, VENDEDORES, FACTURAS
+-- Y LA TABLA FALTANTE DETALLE_FACTURA:
+
+CREATE TABLE CLIENTES (
+    id_clientes NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    nom_cliente VARCHAR2(60) NOT NULL,
+    direccion VARCHAR2(60) NOT NULL,
+    telefono VARCHAR2(15) NOT NULL,
+    id_comunas NUMBER REFERENCES comunas(id_comunas) NOT NULL
+);
+
+CREATE TABLE ARTICULOS (
+    id_articulos NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    nom_articulo VARCHAR2(50) NOT NULL,
+    precio NUMBER(8) NOT NULL,
+    stock_actual NUMBER(5) NOT NULL,
+    stock_minimo NUMBER(5) NOT NULL,
+    id_marcas NUMBER REFERENCES marcas(id_marcas) NOT NULL
+);
+
+CREATE TABLE VENDEDORES(
+    id_vendedores NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    rut_vendedor VARCHAR2(12) NOT NULL UNIQUE,
+    nombres_vendedores VARCHAR2(30) NOT NULL,
+    apellido_paterno_vendedores VARCHAR2(30) NOT NULL,
+    apellido_materno_vendedores VARCHAR2(30) NULL,
+    fac_nac DATE NOT NULL,
+    fec_contrato DATE NOT NULL,
+    sueldo NUMBER(8) NOT NULL,
+    comision NUMBER(4, 2) NOT NULL,
+    id_zonas NUMBER REFERENCES zonas(id_zonas) NULL,
+    id_categorias NUMBER REFERENCES categorias(id_categorias) NOT NULL
+);
+
+CREATE TABLE FACTURAS (
+    id_facturas NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    id_clientes NUMBER REFERENCES clientes(id_clientes) NOT NULL,
+    id_vendedores NUMBER REFERENCES vendedores(id_vendedores) NOT NULL,
+    fecha_factura DATE NOT NULL
+);
+
+CREATE TABLE DETALLE_FACTURA (
+     id_detalle_factura NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+     id_facturas NUMBER NOT NULL REFERENCES facturas(id_facturas),
+     id_articulos NUMBER NOT NULL REFERENCES articulos(id_articulos),
+     cantidad NUMBER(4) NOT NULL CHECK(cantidad > 0)
+);
+
