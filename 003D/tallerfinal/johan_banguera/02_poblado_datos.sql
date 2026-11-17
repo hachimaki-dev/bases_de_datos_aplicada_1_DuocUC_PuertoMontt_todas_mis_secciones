@@ -48,19 +48,19 @@ INSERT INTO ARTICULOS(nom_articulo, precio, stock_actual, stock_minimo, marca_id
 COMMIT;
 
 -- INSERT INTO VENDEDORES --
-INSERT INTO VENDEDORES(rut_vendedor, nombres, paterno, materno, fec_nac, fec_contrato, sueldo, comision, zona_id, categoria_id) VALUES ('11111112-6', 'BENITO', 'ORDENES', 'ROMERO', TO_DATE('1983-05-22', 'YYY-MM-DD'), TO_DATE('2018-04-16', 'YYY-MM-DD'), 550000, 0.13, 1, 3);
-INSERT INTO VENDEDORES(rut_vendedor, nombres, paterno, materno, fec_nac, fec_contrato, sueldo, comision, zona_id, categoria_id) VALUES ('12222222-3', 'MARTA', 'VIVEROS', NULL, TO_DATE('1988-08-07', 'YYY-MM-DD'), TO_DATE('2020-07-02', 'YYY-MM-DD'), 545000, 0.07, 2, 2);
-INSERT INTO VENDEDORES(rut_vendedor, nombres, paterno, materno, fec_nac, fec_contrato, sueldo, comision, zona_id, categoria_id) VALUES ('13333333-K', 'OSCAR', 'CACERES', 'LAGOS', TO_DATE('1989-10-09', 'YYY-MM-DD'), TO_DATE('2021-09-03', 'YYY-MM-DD'), 567400, 0.13, 1, 1);
-INSERT INTO VENDEDORES(rut_vendedor, nombres, paterno, materno, fec_nac, fec_contrato, sueldo, comision, zona_id, categoria_id) VALUES ('14444444-5', 'MILENA', 'MENA', 'CARTES', TO_DATE('1992-12-08', 'YYY-MM-DD'), TO_DATE('2019-11-03', 'YYY-MM-DD'), 573620, 0.05, 3, 3);
-INSERT INTO VENDEDORES(rut_vendedor, nombres, paterno, materno, fec_nac, fec_contrato, sueldo, comision, zona_id, categoria_id) VALUES ('15555555-6', 'ESTEBAN', 'ROMERO', NULL, TO_DATE('1995-12-08', 'YYY-MM-DD'), TO_DATE('2023-11-03', 'YYY-MM-DD'), 573620, 0.08, NULL, 3);
+INSERT INTO VENDEDORES(rut_vendedor, nombres, paterno, materno, fec_nac, fec_contrato, sueldo, comision, zona_id, categoria_id) VALUES ('11111112-6', 'BENITO', 'ORDENES', 'ROMERO', DATE '1983-05-22', DATE '2018-04-16', 550000, 0.13, 1, 3);
+INSERT INTO VENDEDORES(rut_vendedor, nombres, paterno, materno, fec_nac, fec_contrato, sueldo, comision, zona_id, categoria_id) VALUES ('12222222-3', 'MARTA', 'VIVEROS', NULL, DATE '1988-08-07', DATE '2020-07-02', 545000, 0.07, 2, 2);
+INSERT INTO VENDEDORES(rut_vendedor, nombres, paterno, materno, fec_nac, fec_contrato, sueldo, comision, zona_id, categoria_id) VALUES ('13333333-K', 'OSCAR', 'CACERES', 'LAGOS', DATE '1989-10-09', DATE '2021-09-03', 567400, 0.13, 1, 1);
+INSERT INTO VENDEDORES(rut_vendedor, nombres, paterno, materno, fec_nac, fec_contrato, sueldo, comision, zona_id, categoria_id) VALUES ('14444444-5', 'MILENA', 'MENA', 'CARTES', DATE '1992-12-08', DATE '2019-11-03', 573620, 0.05, 3, 3);
+INSERT INTO VENDEDORES(rut_vendedor, nombres, paterno, materno, fec_nac, fec_contrato, sueldo, comision, zona_id, categoria_id) VALUES ('15555555-6', 'ESTEBAN', 'ROMERO', NULL, DATE '1995-12-08', DATE '2023-11-03', 573620, 0.08, NULL, 3);
 COMMIT;
 
 -- INSERT INTO FACTURAS --
-INSERT INTO FACTURAS(cliente_id, vendedor_id, fecha_factura) VALUES (1, 2, TO_DATE('2026-01-18', 'YYY-MM-DD'));
-INSERT INTO FACTURAS(cliente_id, vendedor_id, fecha_factura) VALUES (2, 4, TO_DATE('2026-01-18', 'YYY-MM-DD'));
-INSERT INTO FACTURAS(cliente_id, vendedor_id, fecha_factura) VALUES (4, 3, TO_DATE('2026-01-18', 'YYY-MM-DD'));
-INSERT INTO FACTURAS(cliente_id, vendedor_id, fecha_factura) VALUES (3, 5, TO_DATE('2026-01-18', 'YYY-MM-DD'));
-INSERT INTO FACTURAS(cliente_id, vendedor_id, fecha_factura) VALUES (2, 2, TO_DATE('2026-01-18', 'YYY-MM-DD'));
+INSERT INTO FACTURAS(cliente_id, vendedor_id, fecha_factura) VALUES (1, 2, DATE '2026-01-18');
+INSERT INTO FACTURAS(cliente_id, vendedor_id, fecha_factura) VALUES (2, 4, DATE '2026-01-18');
+INSERT INTO FACTURAS(cliente_id, vendedor_id, fecha_factura) VALUES (4, 3, DATE '2026-01-18');
+INSERT INTO FACTURAS(cliente_id, vendedor_id, fecha_factura) VALUES (3, 5, DATE '2026-01-18');
+INSERT INTO FACTURAS(cliente_id, vendedor_id, fecha_factura) VALUES (2, 2, DATE '2026-01-18');
 COMMIT;
 
 -- INSERT INTO DETALLE_FACTURA --
