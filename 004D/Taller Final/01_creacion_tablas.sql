@@ -49,6 +49,8 @@ CREATE TABLE vendedores (
     zona_id NUMBER REFERENCES zonas(id),
     categoria_id NUMBER NOT NULL REFERENCES categorias(id)
 );
+
+
 --equipo_id      NUMBER        NOT NULL REFERENCES equipos(id)
 CREATE TABLE clientes (
     id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -72,6 +74,13 @@ CREATE TABLE facturas (
     cliente_id NUMBER NOT NULL REFERENCES clientes(id),
     vendedor_id NUMBER NOT NULL REFERENCES vendedores(id),
     fecha_factura DATE NOT NULL
+);
+
+CREATE TABLE detalle_factura (
+    id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    factura_id NUMBER NOT NULL REFERENCES facturas(id),
+    articulo_id NUMBER NOT NULL REFERENCES articulos(id),
+    cantidad NUMBER
 );
 
 -- IMPLEMENTE AQUÍ LAS TABLAS CLIENTES, ARTICULOS, VENDEDORES, FACTURAS
