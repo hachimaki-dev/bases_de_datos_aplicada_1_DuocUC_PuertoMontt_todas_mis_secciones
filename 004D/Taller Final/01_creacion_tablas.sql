@@ -1,9 +1,3 @@
--- ============================================================================
--- ANEXO 1: SCRIPT BASE INCOMPLETO — CASO TIENDA AKIBASUR
--- Importante: Corrija los tipos de datos y restricciones de las 4 tablas base
--- y agregue las sentencias CREATE TABLE faltantes.
--- ============================================================================
-
 DROP TABLE detalle_factura CASCADE CONSTRAINTS;
 DROP TABLE facturas CASCADE CONSTRAINTS;
 DROP TABLE vendedores CASCADE CONSTRAINTS;
@@ -27,17 +21,14 @@ CREATE TABLE marcas (
 CREATE TABLE categorias (
     id             NUMBER       GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     nom_categoria  VARCHAR2(30) NOT NULL,
-    porcentaje     NUMBER(2,2)    NOT NULL
+    porcentaje     NUMBER(5,2)    NOT NULL
 );
 
 CREATE TABLE zonas (
     id        NUMBER       GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     nom_zona  VARCHAR2(30)  NOT NULL,
-    porc      NUMBER(2,2)    NOT NULL
+    porc      NUMBER(5,2)    NOT NULL
 );
-
--- IMPLEMENTE AQUÍ LAS TABLAS CLIENTES, ARTICULOS, VENDEDORES, FACTURAS
--- Y LA TABLA FALTANTE DETALLE_FACTURA: id_artista NUMBER REFERENCES ARTISTA(id_artista)
 
 CREATE TABLE clientes (
     id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
