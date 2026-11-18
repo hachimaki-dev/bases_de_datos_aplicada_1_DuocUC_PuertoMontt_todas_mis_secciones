@@ -60,11 +60,11 @@ CREATE TABLE vendedores (
     nombres VARCHAR2(30) NOT NULL,
     paterno VARCHAR2(30) NOT NULL,
     materno VARCHAR2(30),
-    fec_nac DATE DEFAULT SYSDATE NOT NULL,
-    fec_contrato DATE DEFAULT SYSDATE NOT NULL,
+    fec_nac DATE NOT NULL,
+    fec_contrato DATE NOT NULL,
     sueldo NUMBER(8) NOT NULL,
     comision NUMBER(4, 2) NOT NULL,
-    zona_id NUMBER NOT NULL REFERENCES zonas(id),
+    zona_id NUMBER REFERENCES zonas(id),
     categoria_id NUMBER NOT NULL REFERENCES categorias(id)
 );
 
