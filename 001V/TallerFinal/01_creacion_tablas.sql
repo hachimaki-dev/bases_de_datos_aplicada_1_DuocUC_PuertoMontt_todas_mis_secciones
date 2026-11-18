@@ -59,7 +59,7 @@ CREATE TABLE VENDEDORES(
     fec_contrato DATE NOT NULL,
     sueldo NUMBER(8) NOT NULL,
     comision NUMBER(4,2) NOT NULL,
-    zona_id NUMBER REFERENCES ZONAS(id) DEFAULT NULL,
+    zona_id NUMBER DEFAULT NULL REFERENCES zonas(id),
     categoria_id NUMBER REFERENCES categorias(id) NOT NULL
 );
 
