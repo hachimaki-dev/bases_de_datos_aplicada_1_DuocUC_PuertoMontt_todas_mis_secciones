@@ -15,25 +15,25 @@ DROP TABLE marcas CASCADE CONSTRAINTS;
 DROP TABLE comunas CASCADE CONSTRAINTS;
 
 CREATE TABLE comunas (
-    id          NUMBER,
-    nom_comuna  VARCHAR2(40) NOT NULL
+    id             NUMBER       GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    nom_comuna  VARCHAR2(40) NOT NULL unique
 );
 
 CREATE TABLE marcas (
-    id          NUMBER,
-    nom_marca   VARCHAR2(40) NOT NULL
+    id             NUMBER       GENERATED ALWAYS AS IDENTITY PRIMARY KEY, 
+    nom_marca   VARCHAR2(40) NOT NULL UNIQUE
 );
 
 CREATE TABLE categorias (
     id             NUMBER       GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     nom_categoria  VARCHAR2(30) NOT NULL,
-    porcentaje     NUMBER(2)    NOT NULL
+    porcentaje     NUMBER(4,2)    NOT NULL check (porcentaje > 0)
 );
 
 CREATE TABLE zonas (
     id        NUMBER       GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    nom_zona  VARCHAR2(4)  NOT NULL,
-    porc      NUMBER(2)    NOT NULL
+    nom_zona  VARCHAR2(40)  NOT NULL UNIQUE,
+    porc      NUMBER(4,2)    NOT NULL check (porc > 0)
 );
 
 -- IMPLEMENTE AQUÍ LAS TABLAS CLIENTES, ARTICULOS, VENDEDORES, FACTURAS
@@ -72,7 +72,14 @@ CREATE TABLE facturas (
     id            NUMBER        GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     cliente_id not null references clientes(id),
     vendedor_id not null references vendedores(id),
-    fecha_factura date not null 
+    fecha_factura default SYSDATE not null
 
  
+);
+CREATE TABLE detalle_factura (
+    id            NUMBER        GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    factura_id number not null references facturas(id),
+    articulo_id number not null references articulos(id),
+    cantidad number(4) not null check (cantidad > 0)
+
 );
