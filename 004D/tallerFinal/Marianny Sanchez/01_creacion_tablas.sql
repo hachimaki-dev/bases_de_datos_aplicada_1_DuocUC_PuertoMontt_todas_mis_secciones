@@ -81,7 +81,9 @@ CREATE TABLE factura(
 -- Y LA TABLA FALTANTE DETALLE_FACTURA:
 CREATE TABLE detalle_factura(
 id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-factura_id NUMBER NOT NULL REFERENCES facturas(id),
+factura_id NUMBER NOT NULL REFERENCES factura(id),
  articulo_id NUMBER NOT NULL REFERENCES articulos(id),
 cantidad NUMBER(4) NOT NULL CHECK (cantidad > 0)
 );
+
+COMMIT;
