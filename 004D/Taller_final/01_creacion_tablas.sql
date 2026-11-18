@@ -8,6 +8,8 @@ DROP TABLE categorias CASCADE CONSTRAINTS;
 DROP TABLE marcas CASCADE CONSTRAINTS;
 DROP TABLE comunas CASCADE CONSTRAINTS;
 
+
+
 CREATE TABLE comunas (
     id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     nom_comuna  VARCHAR2(40) NOT NULL
@@ -21,50 +23,50 @@ CREATE TABLE marcas (
 CREATE TABLE categorias (
     id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     nom_categoria  VARCHAR2(30) NOT NULL,
-    porcentaje     NUMBER(2)    NOT NULL
+    porcentaje     NUMBER(4,1) NOT NULL CHECK(porcentaje > 0) 
 );
 
 CREATE TABLE zonas (
     id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    nom_zona  VARCHAR2(4)  NOT NULL,
-    porc      NUMBER(2)    NOT NULL
+    nom_zona  VARCHAR2(40)  NOT NULL,
+    porc      NUMBER(4,2) NOT NULL
 );
 
 -- IMPLEMENTE AQUÍ LAS TABLAS CLIENTES, ARTICULOS, VENDEDORES, FACTURAS
-CREATE TABLE cliente(
+CREATE TABLE clientes(
     id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     nombre_cliente VARCHAR2(60),
-    direccion VARCHAR(60),
-    telefono VARCHAR2(15),
+    direccion VARCHAR(60)NOT NULL,
+    telefono VARCHAR2(15)NOT NULL,
     comuna_id NUMBER NOT NULL REFERENCES comunas(id)
 );
 
 CREATE TABLE articulos(
     id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     nombre_cliente VARCHAR2(60),
-    precio NUMBER(8),
-    stock_actual NUMBER(5),
-    stock_minimo NUMBER(5),
+    precio NUMBER(8)NOT NULL CHECK(precio > 0),
+    stock_actual NUMBER(5) NOT NULL CHECK(stock_actual > 10),
+    stock_minimo NUMBER(5) NOT NULL CHECK(stock_minimo >0),
     marcas_id NUMBER NOT NULL REFERENCES marcas(id)
 );
 
-CREATE TABLE vendedores(
+ CREATE TABLE vendedores(
     id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    rut_vendedor VARCHAR2(12) NOT NULL UNIQUE,
-    nombres VARCHAR2(30),
-    paterno VARCHAR2(30),
-    materno VARCHAR2(30),
-    fec_nac DATE,
-    fec_contrato DATE,
-    sueldo NUMBER(8),
-    comision NUMBER(4,2),
-    zonas_id NUMBER NOT NULL REFERENCES zonas(id),
-    categorias_id NUMBER NOT NULL REFERENCES categorias(id)
-);
+    cliente_id NUMBER NOT NULL REFERENCES clientes(id),
+    vendedores_id NUMBER NOT NULL REFERENCES vendedores(id),
+    fecha_factura DATE DEFAULT SYSDATE NOT NULL
+ );
 
 CREATE TABLE facturas(
-    zonas_id NUMBER NOT NULL REFERENCES zonas(id),
-    cliente_id NUMBER NOT NULL REFERENCES cliente(id),
-    vendedores NUMBER NOT NULL REFERENCES vendedores(id)
+    id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    cliente_id NUMBER NOT NULL REFERENCES clientes(id),
+    vendedores_id NUMBER NOT NULL REFERENCES vendedores(id),
+    fecha_factura DATE DEFAULT SYSDATE NOT NULL
 );
 -- Y LA TABLA FALTANTE DETALLE_FACTURA:
+CREATE TABLE detalles_factura(
+    facturas_id NUMBER NOT NULL REFERENCES facturas(id),
+    articulos_id NUMBER NOT NULL REFERENCES articulos(id),
+    cantidad NUMBER NOT NULL
+);
+
