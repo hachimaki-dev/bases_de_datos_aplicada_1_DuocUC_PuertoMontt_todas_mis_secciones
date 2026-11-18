@@ -311,5 +311,27 @@ FROM jugadores;
 SELECT COUNT(*) AS total_agentes FROM AGENTES GROUP BY rol;
 //
 
+// Mostrar cuántos jugadores hay por cada pais_natal, ordenando de mayor a menor cantidad.
+SELECT PAIS_NATAL , COUNT(*) AS TOTAL_JUGADORES FROM JUGADORES GROUP BY PAIS_NATAL ORDER BY TOTAL_JUGADORES DESC;
+
+
 SELECT pais_natal FROM JUGADORES ORDER BY pais_natal , cantidad desc;
 
+// Por cada fase en la tabla partidas, mostrar cuántas partidas se jugaron, la duración promedio y el total de público acumulado.
+SELECT COUNT(ID) AS TOTAL_PARTIDAS , AVG(DURACION_MIN) AS DURACION_PROMEDIO , SUM(ASISTENCIA_PUBLICO) AS TOTAL_ASISTENCIA FROM PARTIDAS;
+
+// Mostrar cuántos patrocinadores existen por cada rubro.
+SELECT * FROM PATROCINADORES;
+SELECT COUNT(ID) , RUBRO FROM PATROCINADORES GROUP BY RUBRO;
+
+// En patrocinios, mostrar por cada tipo_contrato la cantidad de contratos y la suma de monto_anual, ordenado de mayor a menor monto total.
+SELECT COUNT(ID) , TIPO_CONTRATO , SUM(MONTO_ANUAL) AS MONTO_MAYOR_MENOR FROM PATROCINIOS GROUP BY TIPO_CONTRATO ORDER BY MONTO_MAYOR_MENOR DESC;
+
+// En participaciones, agrupar por gano (S o N) y mostrar la cantidad de registros, el promedio de kills y el promedio de puntaje_combate.
+SELECT * FROM PATROCINIOS;
+
+SELECT j.NICKNAME , p.KILLS , pa.FASE , ma.NOMBRE FROM JUGADORES j
+JOIN PARTICIPACIONES p ON j.ID = p.JUGADOR_ID
+JOIN PARTIDAS pa ON p.PARTIDA_ID = pa.ID
+JOIN MAPAS ma ON ma.ID = pa.MAPA_ID
+WHERE pa.FASE = 'Gran Final';
