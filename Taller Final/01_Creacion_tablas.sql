@@ -27,13 +27,13 @@ CREATE TABLE marcas (
 CREATE TABLE categorias (
     id             NUMBER       GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     nom_categoria  VARCHAR2(30) NOT NULL,
-    porcentaje     NUMBER(2)    NOT NULL
+    porcentaje     NUMBER(4,1)    NOT NULL CHECK (porcentaje > 0)
 );
 
 CREATE TABLE zonas (
     id        NUMBER       GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    nom_zona  VARCHAR2(4)  NOT NULL,
-    porc      NUMBER(2)    NOT NULL
+    nom_zona  VARCHAR2(40)  NOT NULL UNIQUE,
+    porc      NUMBER(4,2)    NOT NULL CHECK (porc > 0)
 );
 
 -- IMPLEMENTE AQUÍ LAS TABLAS CLIENTES, ARTICULOS, VENDEDORES, FACTURAS
@@ -50,9 +50,9 @@ CREATE TABLE CLIENTES(
 CREATE TABLE ARTICULOS(
     id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     nom_articulo VARCHAR2(50) NOT NULL,
-    precio NUMBER(8) NOT NULL,
-    stock_actual NUMBER(5) NOT NULL,
-    stock_minimo NUMBER(5) NOT NULL,
+    precio NUMBER(8) NOT NULL CHECK (precio > 0),
+    stock_actual NUMBER(5) NOT NULL CHECK (stock_actual > 10),
+    stock_minimo NUMBER(5) NOT NULL CHECK (stock_minimo > 0),
     marca_id NUMBER REFERENCES MARCAS(id)
 );
 
@@ -74,19 +74,15 @@ CREATE TABLE FACTURAS(
     id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     cliente_id NUMBER REFERENCES CLIENTES(id),
     vendedores_id NUMBER REFERENCES VENDEDORES(id),
-    fecha_factura DATE NOT NULL
+    fecha_factura DATE DEFAULT SYSDATE NOT NULL
 );
 
 CREATE TABLE DETALLE_FACTURA(
     id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    factura_id NUMBER REFERENCES FACTURAS(id),
-    articulo_id NUMBER REFERENCES ARTICULOS(id),
-    cantidad NUMBER 
-)
-
-
-
-
+    factura_id NUMBER NOT NULL REFERENCES FACTURAS(id),
+    articulo_id NUMBER NOT NULL REFERENCES ARTICULOS(id),
+    cantidad NUMBER(4) NOT NULL CHECK(cantidad > 0)
+);
 
 
 
