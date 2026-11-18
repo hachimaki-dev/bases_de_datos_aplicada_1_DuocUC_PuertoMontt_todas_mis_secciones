@@ -32,7 +32,7 @@ CREATE TABLE categorias (
 
 CREATE TABLE zonas (
     id        NUMBER       GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    nom_zona  VARCHAR2(4)  NOT NULL,
+    nom_zona  VARCHAR2(30)  NOT NULL,
     porc      NUMBER(4, 2)    NOT NULL
 );
 
@@ -42,7 +42,7 @@ CREATE TABLE clientes (
     nombre_cliente VARCHAR2(60) NOT NULL,
     direccion VARCHAR2(60) NOT NULL,
     telefono VARCHAR2(15) NOT NULL,
-    comuna_id NUMBER REFERENCES COMUNAS(id)
+    comuna_id NUMBER NOT NULL REFERENCES COMUNAS(id)
 );
 
 CREATE TABLE articulos (
@@ -51,7 +51,7 @@ CREATE TABLE articulos (
     precio NUMBER(8) CHECK(precio > 0) NOT NULL,
     stock_actual NUMBER(5) CHECK(stock_actual > 10) NOT NULL,
     stock_minimo NUMBER(5) CHECK(stock_minimo > 0) NOT NULL,
-    marca_id NUMBER REFERENCES marcas(id)
+    marca_id NUMBER NOT NULL REFERENCES marcas(id)
 );
 
 CREATE TABLE vendedores (
@@ -60,19 +60,26 @@ CREATE TABLE vendedores (
     nombres VARCHAR2(30) NOT NULL,
     paterno VARCHAR2(30) NOT NULL,
     materno VARCHAR2(30),
-    fec_nac DATE NOT NULL,
-    fec_contrato DATE NOT NULL,
+    fec_nac DATE DEFAULT SYSDATE NOT NULL,
+    fec_contrato DATE DEFAULT SYSDATE NOT NULL,
     sueldo NUMBER(8) NOT NULL,
     comision NUMBER(4, 2) NOT NULL,
-    zona_id NUMBER REFERENCES zonas(id),
-    categoria_id NUMBER REFERENCES categorias(id)
+    zona_id NUMBER NOT NULL REFERENCES zonas(id),
+    categoria_id NUMBER NOT NULL REFERENCES categorias(id)
 );
 
 CREATE TABLE facturas (
     id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    cliente_id NUMBER REFERENCES clientes(id),
-    vendedor_id NUMBER REFERENCES vendedores(id),
-    fecha_factura DATE DEFAULT SYSDATE NOT NULL
+    cliente_id NUMBER NOT NULL REFERENCES clientes(id),
+    vendedor_id NUMBER NOT NULL REFERENCES vendedores(id),
+    fecha_factura DATE DEFAULT SYSDATE NOT NULL 
+);
+
+CREATE TABLE detalle_factura (
+    id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    factura_id NUMBER NOT NULL REFERENCES facturas(id),
+    articulo_id NUMBER NOT NULL REFERENCES articulos(id),
+    cantidad NUMBER(4) NOT NULL CHECK ( cantidad > 0)
 );
 
 -- IMPLEMENTE AQUÍ LAS TABLAS CLIENTES, ARTICULOS, VENDEDORES, FACTURAS
