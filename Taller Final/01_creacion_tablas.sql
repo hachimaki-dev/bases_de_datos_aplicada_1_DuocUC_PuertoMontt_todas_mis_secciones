@@ -41,7 +41,7 @@ CREATE TABLE  clientes (
     nombre VARCHAR2(60) NOT NULL,
     direccion VARCHAR2(60) NOT NULL,
     telefono VARCHAR2(15) NOT NULL UNIQUE,
-    id_comuna REFERENCES comuna(id) NOT NULL
+    id_comuna REFERENCES comunas(id) NOT NULL
 );
 
 CREATE TABLE articulos (
