@@ -72,3 +72,7 @@ CREATE TABLE facturas (
     fecha_factura DATE NOT NULL
 );
 
+CREATE TABLE detalle_factura (
+facturas_id NUMBER REFERENCES FACTURAS(id) NOT NULL,
+articulo_id NUMBER REFERENCES ARTICULOS(id) NOT NULL
+);
