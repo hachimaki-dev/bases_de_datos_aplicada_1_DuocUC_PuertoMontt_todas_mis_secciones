@@ -49,8 +49,6 @@ CREATE TABLE vendedores (
     zona_id NUMBER REFERENCES zonas(id),
     categoria_id NUMBER NOT NULL REFERENCES categorias(id)
 );
-
-
 --equipo_id      NUMBER        NOT NULL REFERENCES equipos(id)
 CREATE TABLE clientes (
     id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -59,7 +57,6 @@ CREATE TABLE clientes (
     telefono VARCHAR2(15) NOT NULL,
     comuna_id NUMBER NOT NULL REFERENCES comunas(id)
 );
-
 CREATE TABLE articulos (
     id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     nom_articulo VARCHAR2(50) NOT NULL,
@@ -68,14 +65,12 @@ CREATE TABLE articulos (
     stock_minimo NUMBER(5) NOT NULL,
     marca_id NUMBER NOT NULL REFERENCES marcas(id)
 );
-
 CREATE TABLE facturas (
     id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     cliente_id NUMBER NOT NULL REFERENCES clientes(id),
     vendedor_id NUMBER NOT NULL REFERENCES vendedores(id),
     fecha_factura DATE NOT NULL
 );
-
 CREATE TABLE detalle_factura (
     id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     factura_id NUMBER NOT NULL REFERENCES facturas(id),
