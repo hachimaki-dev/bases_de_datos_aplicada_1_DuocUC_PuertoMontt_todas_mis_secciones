@@ -28,13 +28,17 @@ INSERT INTO clientes(nombre_cliente, direccion, telefono, comuna_id) VALUES ('TO
 INSERT INTO clientes(nombre_cliente, direccion, telefono, comuna_id) VALUES ('LOPEZ ROJAS THOMAS', 'BLANCO ENCALADA 2007', 5692989233, 4);
 INSERT INTO clientes(nombre_cliente, direccion, telefono, comuna_id) VALUES ('ZAMORA MOLINA TOMAS', 'WALKER MARTINEZ 1294', 5694343456, 5);
 
-INSERT INTO articulos(nombre_cliente, precio, stock_actual, stock_minimo, marcas_id) VALUES ("MANGA ONE PIECE VOL 100", 11990, 150, 80, 2);
-INSERT INTO articulos(nombre_cliente, precio, stock_actual, stock_minimo, marcas_id) VALUES ("MANGA CHAINSAW MAN VOL 1", 9990, 50, 20, 3);
-INSERT INTO articulos(nombre_cliente, precio, stock_actual, stock_minimo, marcas_id) VALUES ("GUNPLA RX-78-2 GUNDAM HG", 24990, 200, 50, 1);
-INSERT INTO articulos(nombre_cliente, precio, stock_actual, stock_minimo, marcas_id) VALUES ("BOOSTER BOX YU-GI-OH", 45990, 50, 20, 4);
-INSERT INTO articulos(nombre_cliente, precio, stock_actual, stock_minimo, marcas_id) VALUES ("NENDOROID MIKU HATSUNE", 54990, 80, 40, 5);
+INSERT INTO articulos(nom_articulo, precio, stock_actual, stock_minimo, marcas_id) VALUES ("MANGA ONE PIECE VOL 100", 11990, 150, 80, 2);
+INSERT INTO articulos(nom_articulo, precio, stock_actual, stock_minimo, marcas_id) VALUES ("MANGA CHAINSAW MAN VOL 1", 9990, 50, 20, 3);
+INSERT INTO articulos(nom_articulo, precio, stock_actual, stock_minimo, marcas_id) VALUES ("GUNPLA RX-78-2 GUNDAM HG", 24990, 200, 50, 1);
+INSERT INTO articulos(nom_articulo, precio, stock_actual, stock_minimo, marcas_id) VALUES ("BOOSTER BOX YU-GI-OH", 45990, 50, 20, 4);
+INSERT INTO articulos(nom_articulo, precio, stock_actual, stock_minimo, marcas_id) VALUES ("NENDOROID MIKU HATSUNE", 54990, 80, 40, 5);
 
-INSERT INTO vendedores(rut_ve, precio, stock_actual, stock_minimo, marcas_id) VALUES ("NENDOROID MIKU HATSUNE", 54990, 80, 40, 5);
+INSERT INTO vendedores(rut_vendedor, nomre, paterno, materno, fec_nacimiento, fec_contrato, sueltdo , comision, zonas_id, categorias_id) VALUES ('', '', '', DATE '', DATE'', , , , );
+INSERT INTO vendedores(rut_vendedor, nomre, paterno, materno, fec_nacimiento, fec_contrato, sueltdo , comision, zonas_id, categorias_id) VALUES ('', '', '', DATE '', DATE'', , , , );
+INSERT INTO vendedores(rut_vendedor, nomre, paterno, materno, fec_nacimiento, fec_contrato, sueltdo , comision, zonas_id, categorias_id) VALUES ('', '', '', DATE '', DATE'', , , , );
+INSERT INTO vendedores(rut_vendedor, nomre, paterno, materno, fec_nacimiento, fec_contrato, sueltdo , comision, zonas_id, categorias_id) VALUES ('', '', '', DATE '', DATE'', , , , );
+INSERT INTO vendedores(rut_vendedor, nomre, paterno, materno, fec_nacimiento, fec_contrato, sueltdo , comision, zonas_id, categorias_id) VALUES ('', '', '', DATE '', DATE'', , , , );
 
 
 COMMIT;

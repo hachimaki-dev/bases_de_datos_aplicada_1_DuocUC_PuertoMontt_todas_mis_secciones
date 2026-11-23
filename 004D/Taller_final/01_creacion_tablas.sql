@@ -43,7 +43,7 @@ CREATE TABLE clientes(
 
 CREATE TABLE articulos(
     id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    nombre_cliente VARCHAR2(60),
+    nom_articulo VARCHAR2(60),
     precio NUMBER(8)NOT NULL CHECK(precio > 0),
     stock_actual NUMBER(5) NOT NULL CHECK(stock_actual > 10),
     stock_minimo NUMBER(5) NOT NULL CHECK(stock_minimo >0),
@@ -52,9 +52,17 @@ CREATE TABLE articulos(
 
  CREATE TABLE vendedores(
     id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    cliente_id NUMBER NOT NULL REFERENCES clientes(id),
-    vendedores_id NUMBER NOT NULL REFERENCES vendedores(id),
-    fecha_factura DATE DEFAULT SYSDATE NOT NULL
+    rut_vendedor varchar2(12) NOT NULL UNIQUE,
+    nombre varchar2(30)NOT NULL,
+    paterno varchar2(30)NOT NULL,
+    materno varchar2(30)NOT NULL,
+    fec_nacimiento DATE DEFAULT SYSDATE NOT NULL,
+    fec_contrato DATE DEFAULT SYSDATE NOT NULL,
+    sueldo NUMBER(8) NOT NULL,
+    comision NUMBER(4,2) NOT NULL,
+    zonas_id NUMBER NOT NULL REFERENCES zonas(id),
+    categorias_id NUMBER NOT NULL REFERENCES categorias(id)
+
  );
 
 CREATE TABLE facturas(
